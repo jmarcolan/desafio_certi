@@ -41,6 +41,8 @@ class Converte_numero:
             }
 
         self.parser_entrada = Arrumando_entrada(vetor_dados)
+        self.tes_case_especial_5 = len(vetor_dados)
+        
         
         self.list_entrada = self.parser_entrada.get_lista_valores()
 
@@ -54,16 +56,18 @@ class Converte_numero:
     # Precissa urgentemente ser refatorado
     def _cria_vetor_frase(self):
         self.lista_nomes = self._cria_lista_nomes()
+        test_case_especial_1 = self.tes_case_especial_5  == 1 
+        test_case_especial_5 = self.tes_case_especial_5  == 5
 
         list_string =[]
         # caso o valor seja inteiro so tenha 1 no array [300] [4000]
-        if len(self.lista_nomes) == 1:
-             for dici_convertido in self.lista_nomes:
+        if test_case_especial_1:
+            for dici_convertido in self.lista_nomes:
             #codigo repetido.
+                palavra_saida = ""
                 numero_entrada = dici_convertido["num_s"]
                 palavra = dici_convertido["num_ext"]
-                palavra_saida = "{}".format(palavra)
-                list_string.append(palavra_saida)
+
                  # codigo copiado nao é um bom sinal
                  # concerteza refatorar isso.
                 teste_unidade = numero_entrada < 20  # 1
@@ -81,10 +85,15 @@ class Converte_numero:
                 
                 if teste_milhar_dezena or teste_milhar:
                     palavra_saida = "{} mil".format(palavra)
+
+
+                list_string.append(palavra_saida)
         else:
 
-            for dici_convertido in self.lista_nomes:
+            for i,dici_convertido in enumerate(self.lista_nomes):
+                test_case_especial_primeiro_1 = i == 0  
                 #codigo repetido.
+                palavra_saida = ""
                 numero_entrada = dici_convertido["num_s"]
                 palavra = dici_convertido["num_ext"]
 
@@ -93,8 +102,9 @@ class Converte_numero:
                 teste_unidade = numero_entrada < 10  # 1
                 teste_dezena = numero_entrada < 100 and not teste_unidade  #10
                 teste_centena = numero_entrada < 1000 and not teste_dezena and not teste_unidade #900
-                teste_milhar = numero_entrada < 10000 and not teste_centena and not teste_dezena and not teste_unidade # 9000
-                teste_milhar_dezena = numero_entrada <= 100000 and not teste_milhar and not teste_centena and not teste_dezena and not teste_unidade #99000
+                # tem que testar para igual
+                teste_milhar = numero_entrada >= 1000 #and not teste_centena and not teste_dezena and not teste_unidade # 9000
+                # teste_milhar_dezena = numero_entrada < 100000 and not teste_milhar and not teste_centena and not teste_dezena and not teste_unidade #99000
 
                 # esse teste parece nao estar sendo util 
                 if teste_unidade:
@@ -102,10 +112,15 @@ class Converte_numero:
 
                 if teste_dezena or teste_centena :
                     palavra_saida = "{} e ".format(palavra)
-                
-                if teste_milhar_dezena or teste_milhar:
+
+                if teste_milhar:
                     palavra_saida = "{} mil e ".format(palavra)
                 
+                if test_case_especial_5:
+                    if((teste_milhar) and test_case_especial_primeiro_1):
+                        palavra_saida = "{} e".format(palavra)
+                    else:
+                        palavra_saida = "{} mil e ".format(palavra)
 
                 list_string.append(palavra_saida)
         

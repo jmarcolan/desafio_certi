@@ -145,7 +145,8 @@ def test_converte_numero_lista_string1():
 # refatoracao de nomeclatura é necessaria
 def test_converte_numero_lista_string_final():
 
-    bloco_teste = [[200, 20, 2],
+    bloco_teste = [ [20000,9000, 300,10,9],
+                    [200, 20, 2],
                     [10,9],
                     [20,9],
                     [10000,9000, 300,20,1],
@@ -161,6 +162,7 @@ def test_converte_numero_lista_string_final():
                     [2000],
                     [5000]]
    
+#    [1000, 100,40,2],
     for count,teste in enumerate(bloco_teste):
         parser_entrada = Converte_numero(teste)
         saida = parser_entrada._cria_vetor_frase()
