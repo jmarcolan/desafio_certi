@@ -115,7 +115,7 @@ def test_saida_arrumada():
 
 # comecar os testes para a classe Converte_numero
 
-def test_converte_numero_lista_string():
+def test_converte_numero_lista_string1():
 
     bloco_teste = [[200, 20, 2],
                     [10,9],
@@ -131,13 +131,38 @@ def test_converte_numero_lista_string():
                     [{'num_ext': 'dezenove', 'num_s': 19}],
                     [{'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'nove', 'num_s': 9}],
                     [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
-                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'noventa', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
+                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'nove', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
                     [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
                     [{'num_ext': 'um', 'num_s': 1}],
-                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'noventa', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
-                    [{'num_ext': 'noventa', 'num_s': 90000}, {'num_ext': 'quarenta', 'num_s': 4000}, {'num_ext': 'quatrocentos', 'num_s': 500}, {'num_ext': 'oitenta', 'num_s': 80}, {'num_ext': 'sete', 'num_s': 7}]]
+                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'nove', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
+                   [{'num_ext': 'noventa', 'num_s': 90000}, {'num_ext': 'quatro', 'num_s': 4000}, {'num_ext': 'quinhentos', 'num_s': 500}, {'num_ext': 'oitenta', 'num_s': 80}, {'num_ext': 'sete', 'num_s': 7}]]
     for count,teste in enumerate(bloco_teste):
         parser_entrada = Converte_numero(teste)
         saida = parser_entrada._cria_lista_nomes()
-        # print(saida)
+        print(saida)
         assert saida == bloco_teste_saida[count]
+
+# refatoracao de nomeclatura é necessaria
+def test_converte_numero_lista_string_final():
+
+    bloco_teste = [[200, 20, 2],
+                    [10,9],
+                    [20,9],
+                    [10000,9000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [10000,9000, 300,10,9],
+                    [1],
+                    [20000,9000, 300,10,9],
+                    [90000,4000,500,80,7],
+                    [1],
+                    [10],
+                    [100],
+                    [1000],
+                    [2000],
+                    [5000]]
+   
+    for count,teste in enumerate(bloco_teste):
+        parser_entrada = Converte_numero(teste)
+        saida = parser_entrada._cria_vetor_frase()
+        print(saida)
+        # assert saida == bloco_teste_saida[count]
