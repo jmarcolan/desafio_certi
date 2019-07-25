@@ -33,3 +33,14 @@ Em caso de dúvidas sobre o desafio, mande um email para ept@certi.org.br e mzr@
 - Bônus: Crie um ambiente Docker para que possamos rodar seu servidor sem instalar dependências locais.
 
 Outras coisas em que prestamos atenção no review: edge cases e tratamento de erros, testes unitários, estruturação e qualidade do código, uso do git...
+
+
+# Para isolar a aplicação
+Para usar a aplicação foi usado o [gerador de arquivo](https://github.com/bndr/pipreqs), que gera o arquivo requirements.txt necessário para usar o pip.
+
+# Configuração do Travis
+Para consrtuir o arquivo do Travis foi usado a [pagina do travis](https://docs.travis-ci.com/user/languages/python/). 
+
+# Configuração do ambiente de desenvolvimento
+
+O ambiente de desenvolvimento usado foi o Visual Studio Code. O meu VSCode tinha o [problema](https://stackoverflow.com/questions/52462599/visual-studio-code-python-timeout-waiting-for-debugger-connection)

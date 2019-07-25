@@ -1,0 +1,11 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.terminal.activateEnvironment": false,
+    "python.unitTest.pyTestArgs": [
+        "."
+    ],
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
+    "python.pythonPath": "C:\\Python3664\\python.exe"
+}
