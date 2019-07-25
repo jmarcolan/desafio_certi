@@ -1,6 +1,6 @@
 class Converte_numero:
     def __init__(self):
-        self.unidade={
+        self.dicionario={
             1:"um",
             2:"dois",
             3:"tres",
@@ -31,7 +31,12 @@ class Converte_numero:
             100:"cem",
             200:"duzento",
             300:"trezentos",
-            400:"quatrozentos",
+            400:"quatrocentos",
+            500:"quatrocentos",
+            600:"quatrocentos",
+            700:"quatrocentos",
+            800:"quatrocentos",
+            900:"quatrocentos",
             1000:"mil"
             }
         
@@ -50,8 +55,27 @@ class Converte_numero:
         for a in valor:
             arra.append(a)
         return arra
-        
-        
 
-a = Converte_numero()
-a.ret_valor("20")
+
+
+class Arrumando_entrada():
+    def __init__(self,vetor_dados):
+        self.vetor_dados = vetor_dados
+        self.vetor_dados_saida = []
+
+    
+    def _encontrando_posicao_critica(self):
+        list_invertida = list(reversed(self.vetor_dados))
+        pos_critica = []
+        regra_tamanho_3 = len(list_invertida) >= 2
+        regra_tamanho_5 = len(list_invertida) >= 5
+
+        if regra_tamanho_3:
+            pos_critica.append(1)
+        
+        if regra_tamanho_5:
+            pos_critica.append(4)
+
+        return pos_critica
+
+
