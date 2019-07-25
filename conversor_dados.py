@@ -1,6 +1,6 @@
 class Converte_numero:
-    def __init__(self):
-        self.dicionario={
+    def __init__(self,vetor_dados):
+        self.dicionario ={
             1:"um",
             2:"dois",
             3:"tres",
@@ -29,7 +29,7 @@ class Converte_numero:
             80:"oitenta",
             90:"noventa",
             100:"cem",
-            200:"duzento",
+            200:"duzentos",
             300:"trezentos",
             400:"quatrocentos",
             500:"quatrocentos",
@@ -39,29 +39,58 @@ class Converte_numero:
             900:"quatrocentos",
             1000:"mil"
             }
+
+        self.parser_entrada = Arrumando_entrada(vetor_dados)
         
- 
-    def ret_valor(self,valor):
-        self._convertendo_entrada(valor)
+        self.list_entrada = self.parser_entrada.get_lista_valores()
+
+    def get_valor_por_extenso(self):
+        pass
+
+
+    # fazer algumas proteções para casa o valor nao tenha no dicionario
+    # tem que assegurar que o numero seja um inteiro
+    def _converte_numero(self,numero):
+        return self.dicionario[numero]
+    
+
+  
+    def _cria_lista_nomes(self):
+        list_nomes = []
+        for numero_entrada in self.list_entrada:
+            teste_milhar = numero_entrada > 1000 and numero_entrada < 10000
+            teste_milhar_dezena = numero_entrada >= 10000
+
+            if teste_milhar:
+                numero = int(numero_entrada/100)
+            
+            if teste_milhar_dezena:
+                numero = int(numero_entrada/1000)
+            
+            if not teste_milhar and not teste_milhar_dezena:
+                numero = numero_entrada
         
 
-    def _convertendo_entrada(self,valor):
-        vetor_unidade = self._arrumando_entrada(valor)
+            list_nomes.append(
+                {"num_s":numero_entrada,
+                 "num_ext":self._converte_numero(numero)})
+                
+        return list_nomes
+        
 
-        # print(self.unidade[valor])
-
-    def _arrumando_entrada(self,valor):
-        arra = []
-        for a in valor:
-            arra.append(a)
-        return arra
 
 
 
 class Arrumando_entrada():
     def __init__(self,vetor_dados):
         self.vetor_dados = vetor_dados
-        # self.vetor_dados_saida = self._arrumando_entrada()
+        self.vetor_dados_saida = self._arrumando_entrada()
+
+    
+    #  unica funcao que é necessaria saber para usar a classe.
+    def get_lista_valores(self):
+        return self.vetor_dados_saida
+
 
     
     def _inverte_a_lista(self):
@@ -87,14 +116,6 @@ class Arrumando_entrada():
         return pos_critica
 
 
-
-
-    # def _valor_excecao(self):
-    #     concertando_excecao = []
-    #     for i,excecao in enumerate(self.excecoes):
-    #         if excecao:
-    #             concertando_excecao.append(self.list_invertida[self.pos_critica[i-1]] + self.list_invertida[self.pos_critica[i-1]])
-    #     return concertando_excecao
 
     def _teste_posicao_critic(self,i):
         for cont,critica in enumerate(self.pos_critica):
@@ -147,19 +168,3 @@ class Arrumando_entrada():
         return resul_regra
 
 
-
-
-
-
-# bloco_teste = [[200, 20, 2],
-#                     [10,9],
-#                     [20,9],
-#                     [10000,9000, 300,20,1],
-#                     [20000,9000, 300,20,1],
-#                     [10000,9000, 300,10,9],
-#                     [1],
-#                     [20000,9000, 300,10,9]]
-
-# for count,teste in enumerate(bloco_teste):
-#     parser_entrada = Arrumando_entrada(teste)
-#     saida = parser_entrada._arrumando_entrada()

@@ -108,3 +108,36 @@ def test_saida_arrumada():
         parser_entrada = Arrumando_entrada(teste)
         saida = parser_entrada._arrumando_entrada()
         assert saida == bloco_teste_saida[count]
+
+# Os testes precisam de refatoracao no seu nome
+# Os testes precisam de casos no qual de erro
+# Os negativos serão tratos a posteriori
+
+# comecar os testes para a classe Converte_numero
+
+def test_converte_numero_lista_string():
+
+    bloco_teste = [[200, 20, 2],
+                    [10,9],
+                    [20,9],
+                    [10000,9000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [10000,9000, 300,10,9],
+                    [1],
+                    [20000,9000, 300,10,9],
+                    [90000,4000,500,80,7]]
+    
+    bloco_teste_saida =[[{'num_ext': 'duzentos', 'num_s': 200}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'dois', 'num_s': 2}],
+                    [{'num_ext': 'dezenove', 'num_s': 19}],
+                    [{'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'nove', 'num_s': 9}],
+                    [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
+                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'noventa', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
+                    [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
+                    [{'num_ext': 'um', 'num_s': 1}],
+                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'noventa', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
+                    [{'num_ext': 'noventa', 'num_s': 90000}, {'num_ext': 'quarenta', 'num_s': 4000}, {'num_ext': 'quatrocentos', 'num_s': 500}, {'num_ext': 'oitenta', 'num_s': 80}, {'num_ext': 'sete', 'num_s': 7}]]
+    for count,teste in enumerate(bloco_teste):
+        parser_entrada = Converte_numero(teste)
+        saida = parser_entrada._cria_lista_nomes()
+        # print(saida)
+        assert saida == bloco_teste_saida[count]
