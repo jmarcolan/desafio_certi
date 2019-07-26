@@ -8,8 +8,15 @@ class Vetor_dados():
 
         
     def _get_cases(self):
+        
+        self.tamanho = len(self.vetor_dados_traduzidos)
+
+        self.tes_tamanho_igual_1= len(self.vetor_dados_traduzidos) == 1
+        self.tes_tamanho_igual_2= len(self.vetor_dados_traduzidos) == 2
+        self.tes_tamanho_igual_3= len(self.vetor_dados_traduzidos) == 3
+        self.tes_tamanho_igual_4 = len(self.vetor_dados_traduzidos) == 4
         # teste case para quando for 5 valores
-        self.tes_case_especial_5 = len(self.vetor_dados_originais) == 5
+        self.tes_case_especial_5 = len(self.vetor_dados_traduzidos) == 5
 
         # teste case para quando aconteceu alguma execao no vetor, 19,18
         self.tes_case_especial_19 = len(self.vetor_dados_originais) > len(self.vetor_dados_traduzidos)
@@ -17,9 +24,26 @@ class Vetor_dados():
         # teste case para quando so vem um numero
         self.test_case_especial_1 = len(self.vetor_dados_originais)  == 1 
 
+
+        self.tes_case_mil_mil = self._get_mil_mil()
+        
         # preciso escrever a conversao para ter certeza disso.
         # teste case se tem algum vetor zerado
         self.tes_case_especial_0 = self._vetor_tem_zero()
+
+    # verificar para que o vetor de dados os numeros ja tenham nome
+    def _get_mil_mil(self):
+        cont = 0
+        for valor in self.nova_strutura_dados:
+            if valor.teste_e_milhar or valor.teste_milhar or valor.teste_milhar_dezena:
+                cont = cont + 1
+        
+        if(cont == 2):
+            return True
+        else:
+            return False
+        
+
 
 
     def _estrutura_numeros(self):
@@ -28,22 +52,27 @@ class Vetor_dados():
             nova_strutura_dados.append(Numero(dado))
         return nova_strutura_dados
 
+    # olhar pq nao usa as propiedades da classe Numero
     def _vetor_tem_zero(self):
         for elemento in self.vetor_dados_originais:
             if elemento == 0:
                 return True
             
         return False
-        
+    
+    def set_nome(self,nome):
+        self.nome = nome
+
+    def get_nome(self):
+        return self.nome
+
    
 
 class Numero():
     def __init__(self, numero):
-      
         self.numero = numero
         self._get_qualificador()
 
-    
     def _get_qualificador(self):
         # é o zero
         self.teste_0 = self.numero == 0
@@ -68,12 +97,10 @@ class Recebendo_dados:
         self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
 
         self.valores_convertidos = Converte_numero(self.vetor_dados)
+        vetor_dados = self.valores_convertidos._get_vetor()
+        self.valores_convertidos_vetor = Converte_vetor_string(self.vetor_dados)
 
-
-
-
-
-        
+ 
 
 class Converte_numero:
     def __init__(self,vetor_dados):
@@ -106,7 +133,7 @@ class Converte_numero:
             70:"setenta",
             80:"oitenta",
             90:"noventa",
-            100:"cem",
+            100:"cento",
             200:"duzentos",
             300:"trezentos",
             400:"quatrocentos",
@@ -120,7 +147,6 @@ class Converte_numero:
         self.vetor_dados = vetor_dados
 
     
-
     # usada para receber valores 
     def _get_vetor(self):
         vetor = self.vetor_dados.nova_strutura_dados
@@ -129,6 +155,7 @@ class Converte_numero:
             valor.set_nome(self._get_numero_nome(valor))
             vetor_nome.append(valor)
         
+        # self.vetor_dados.nova_strutura_dados = vetor_nome
         return vetor_nome
 
     
@@ -143,18 +170,87 @@ class Converte_numero:
         else:
             return numero_entrada
 
-
-    # def _deci_de_vetor(self):
-    #     if (not self.vetor_dados.tes_case_especial_19):
-    #         if (not self.vetor_dados.tes_case_especial_5 ) :
-    #             if(not self.test_case_especial_1):
-    #                 self._caminho_minimo()
-    
     def _caminho_minimo(self):
         pass
 
 
+
+class Converte_vetor_string:
+    def __init__(self, vetor_dados):
+        self.vetor_dados = vetor_dados
+
+
+    def _tratar_primeiro_mil(self,string):
+        if(self.vetor_dados.tes_case_mil_mil):
+            return string.replace(" mil","")
+        else:
+            return string
     
+    def _deci_de_vetor(self,vetor):
+        if(self.vetor_dados.tes_case_especial_5):
+            nome = "{0} e {1} e {2} e {3} e {4}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3], vetor[4])
+            self.vetor_dados.set_nome(nome)
+           
+            
+        if(self.vetor_dados.tes_tamanho_igual_4):
+            # alguma vezes aparece o mil mil seguido
+            nome = "{0} e {1} e {2} e {3}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3])
+            self.vetor_dados.set_nome(nome)
+            
+        
+        if(self.vetor_dados.tes_tamanho_igual_3):
+            # encontrar se ocorre o problema
+            nome = "{} e {} e {}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2])
+            self.vetor_dados.set_nome(nome)
+           
+        if(self.vetor_dados.tes_tamanho_igual_2):
+            # encontrar se occore o problema do mil mil
+            nome = "{} e {}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1])
+            self.vetor_dados.set_nome(nome)
+           
+        if(self.vetor_dados.tes_tamanho_igual_1):
+            # tratar o caso do 100
+            # refatorar
+            if("cento" == vetor[0]):
+                self.vetor_dados.set_nome("cem")
+                
+            else:
+                nome = "{}".format(vetor[0])
+                self.vetor_dados.set_nome(nome)
+
+        return self.vetor_dados.get_nome()
+        
+        
+        
+    
+    def _retira_string(self):
+        vetor = self.vetor_dados.nova_strutura_dados
+        vetor_string = []
+        for valor in vetor:
+            palavra_saida = ""
+            if valor.teste_unidade:
+                palavra_saida = "{}".format(valor.nome)
+
+            if valor.teste_dezena or valor.teste_centena :
+                palavra_saida = "{}".format(valor.nome)
+
+            if valor.teste_milhar or valor.teste_milhar_dezena or valor.teste_e_milhar :
+                palavra_saida = "{} mil".format(valor.nome)
+
+            vetor_string.append(palavra_saida)
+
+        # so para testar.
+        nome = self._deci_de_vetor(vetor_string)
+        return nome
+
+
+
+
+
+        
+    
+
+
         # self.teste_0 = self.numero == 0
         # # é a unidade
         # self.teste_unidade = self.numero  < 10  # 1

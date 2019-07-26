@@ -115,59 +115,6 @@ def test_saida_arrumada():
 
 # comecar os testes para a classe Converte_numero
 
-def test_converte_numero_lista_string1():
-
-    bloco_teste = [[200, 20, 2],
-                    [10,9],
-                    [20,9],
-                    [10000,9000, 300,20,1],
-                    [20000,9000, 300,20,1],
-                    [10000,9000, 300,10,9],
-                    [1],
-                    [20000,9000, 300,10,9],
-                    [90000,4000,500,80,7]]
-    
-    bloco_teste_saida =[[{'num_ext': 'duzentos', 'num_s': 200}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'dois', 'num_s': 2}],
-                    [{'num_ext': 'dezenove', 'num_s': 19}],
-                    [{'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'nove', 'num_s': 9}],
-                    [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
-                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'nove', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'vinte', 'num_s': 20}, {'num_ext': 'um', 'num_s': 1}],
-                    [{'num_ext': 'dezenove', 'num_s': 19000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
-                    [{'num_ext': 'um', 'num_s': 1}],
-                    [{'num_ext': 'vinte', 'num_s': 20000}, {'num_ext': 'nove', 'num_s': 9000}, {'num_ext': 'trezentos', 'num_s': 300}, {'num_ext': 'dezenove', 'num_s': 19}],
-                   [{'num_ext': 'noventa', 'num_s': 90000}, {'num_ext': 'quatro', 'num_s': 4000}, {'num_ext': 'quinhentos', 'num_s': 500}, {'num_ext': 'oitenta', 'num_s': 80}, {'num_ext': 'sete', 'num_s': 7}]]
-    for count,teste in enumerate(bloco_teste):
-        parser_entrada = Converte_numero(teste)
-        saida = parser_entrada._cria_lista_nomes()
-        print(saida)
-        assert saida == bloco_teste_saida[count]
-
-# refatoracao de nomeclatura é necessaria
-def test_converte_numero_lista_string_final():
-
-    bloco_teste = [ [1000, 0,40,2],
-                    [20000,9000, 300,10,9],
-                    [200, 20, 2],
-                    [10,9],
-                    [20,9],
-                    [10000,9000, 300,20,1],
-                    [20000,9000, 300,20,1],
-                    [10000,9000, 300,10,9],
-                    [1],
-                    [20000,9000, 300,10,9],
-                    [90000,4000,500,80,7],
-                    [1],
-                    [10],
-                    [100],
-                    [1000],
-                    [2000],
-                    [5000]]
-   
-#    
-    for count,teste in enumerate(bloco_teste):
-        parser_entrada = Converte_numero(teste)
-        saida = parser_entrada._cria_vetor_frase()
-        print(saida)
         # assert saida == bloco_teste_saida[count]
 
 
@@ -239,6 +186,7 @@ def test_numero_vetor_dados():
         numero_ = Recebendo_dados(teste)
         print(numero_)
 
+# converter cada numero 
 def test_converte_numero_correto():
     bloco_teste = [ [1000, 100,40,2],
                     [20000,9000, 300,10,9],
@@ -264,3 +212,48 @@ def test_converte_numero_correto():
         print(vetor_dados)
 #         saida = parser_entrada._get_cases()
 
+# esse é para vir a palavra
+def test_converte_vetor_nome():
+        bloco_teste = [ [1000, 100,40,2],
+                    [20000,9000, 300,10,9],
+                    [200, 20, 2],
+                    [10,9],
+                    [20,9],
+                    [10000,9000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [10000,9000, 300,10,9],
+                    [1],
+                    [20000,9000, 300,10,9],
+                    [90000,4000,500,80,7],
+                    [1],
+                    [10],
+                    [100],
+                    [1000],
+                    [2000],
+                    [5000]]
+
+        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+                              'vinte e nove mil e trezentos e dezenove',
+                               'duzentos e vinte e dois',
+                                'dezenove',
+                                'vinte e nove',
+                                 'dezenove mil e trezentos e vinte e um',
+                                 'vinte e nove mil e trezentos e vinte e um',
+                                 'dezenove mil e trezentos e dezenove',
+                                 'um',
+                                 'vinte e nove mil e trezentos e dezenove',
+                                 'noventa e quatro mil e quinhentos e oitenta e sete',
+                                 'um',
+                                 'dez',
+                                 'cem',
+                                 'um mil',
+                                 'dois mil',
+                                 'cinco mil']
+
+        for count,teste in enumerate(bloco_teste):
+                recebe = Recebendo_dados(teste)
+
+                vetor_palavras = recebe.valores_convertidos_vetor._retira_string()
+                
+                # palavra = recebe.valores_convertidos_vetor._deci_de_vetor()
+                print(vetor_palavras)
