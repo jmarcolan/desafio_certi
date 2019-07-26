@@ -145,7 +145,8 @@ def test_converte_numero_lista_string1():
 # refatoracao de nomeclatura é necessaria
 def test_converte_numero_lista_string_final():
 
-    bloco_teste = [ [20000,9000, 300,10,9],
+    bloco_teste = [ [1000, 0,40,2],
+                    [20000,9000, 300,10,9],
                     [200, 20, 2],
                     [10,9],
                     [20,9],
@@ -162,9 +163,55 @@ def test_converte_numero_lista_string_final():
                     [2000],
                     [5000]]
    
-#    [1000, 100,40,2],
+#    
     for count,teste in enumerate(bloco_teste):
         parser_entrada = Converte_numero(teste)
         saida = parser_entrada._cria_vetor_frase()
         print(saida)
         # assert saida == bloco_teste_saida[count]
+
+
+# def test_converte_numero_get_test_cases():
+
+#     bloco_teste = [ [1000, 0,40,2],
+#                     [20000,9000, 300,10,9],
+#                     [200, 20, 2],
+#                     [10,9],
+#                     [20,9],
+#                     [10000,9000, 300,20,1],
+#                     [20000,9000, 300,20,1],
+#                     [10000,9000, 300,10,9],
+#                     [1],
+#                     [20000,9000, 300,10,9],
+#                     [90000,4000,500,80,7],
+#                     [1],
+#                     [10],
+#                     [100],
+#                     [1000],
+#                     [2000],
+#                     [5000]]
+
+#     for count,teste in enumerate(bloco_teste):
+#         parser_entrada = Converte_numero(teste)
+#         saida = parser_entrada._get_cases()
+#         print(saida)
+def test_numero_propiedades():
+    bloco_teste = [ 1,
+                    9,
+                    10,
+                    19,
+                    90,
+                    100,
+                    900,
+                    1000,
+                    2000,
+                    5000,
+                    10000,
+                    99999]
+
+    for count,teste in enumerate(bloco_teste):
+        numero_ = Numero(teste)
+        print(numero_)
+
+#         saida = parser_entrada._get_cases()
+
