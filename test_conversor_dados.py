@@ -195,6 +195,7 @@ def test_converte_numero_lista_string_final():
 #         parser_entrada = Converte_numero(teste)
 #         saida = parser_entrada._get_cases()
 #         print(saida)
+# arrumar o teste para ver se ele extrai as caracteristicas dos numeros
 def test_numero_propiedades():
     bloco_teste = [ 1,
                     9,
@@ -213,6 +214,8 @@ def test_numero_propiedades():
         numero_ = Numero(teste)
         print(numero_)
 
+# tenho que arruamr esses testes
+# verificar se ele extrai as carracteristicas corretamente
 def test_numero_vetor_dados():
     bloco_teste = [ [1000, 0,40,2],
                     [20000,9000, 300,10,9],
@@ -236,5 +239,28 @@ def test_numero_vetor_dados():
         numero_ = Recebendo_dados(teste)
         print(numero_)
 
+def test_converte_numero_correto():
+    bloco_teste = [ [1000, 100,40,2],
+                    [20000,9000, 300,10,9],
+                    [200, 20, 2],
+                    [10,9],
+                    [20,9],
+                    [10000,9000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [10000,9000, 300,10,9],
+                    [1],
+                    [20000,9000, 300,10,9],
+                    [90000,4000,500,80,7],
+                    [1],
+                    [10],
+                    [100],
+                    [1000],
+                    [2000],
+                    [5000]]
+
+    for count,teste in enumerate(bloco_teste):
+        recebe = Recebendo_dados(teste)
+        vetor_dados = recebe.valores_convertidos._get_vetor()
+        print(vetor_dados)
 #         saida = parser_entrada._get_cases()
 

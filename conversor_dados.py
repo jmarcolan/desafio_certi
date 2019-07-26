@@ -35,10 +35,7 @@ class Vetor_dados():
             
         return False
         
-
-        
-        
-        
+   
 
 class Numero():
     def __init__(self, numero):
@@ -59,6 +56,9 @@ class Numero():
         self.teste_milhar_dezena = self.numero <= 100000 and not self.teste_e_milhar and not self.teste_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade #99000
 
 
+    #setar o nome do numero 
+    def set_nome(self, nome_string):
+        self.nome = nome_string
 
 
 class Recebendo_dados:
@@ -66,6 +66,8 @@ class Recebendo_dados:
         self.parser_entrada = Arrumando_entrada(vetor_dados)     
         self.list_entrada = self.parser_entrada.get_lista_valores()
         self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
+
+        self.valores_convertidos = Converte_numero(self.vetor_dados)
 
 
 
@@ -115,15 +117,70 @@ class Converte_numero:
             900:"novecentos",
             1000:"mil"
             }
+        self.vetor_dados = vetor_dados
 
-    def _get_numero_nome(self,numero):
+    
+
+    # usada para receber valores 
+    def _get_vetor(self):
+        vetor = self.vetor_dados.nova_strutura_dados
+        vetor_nome = []
+        for valor in vetor:
+            valor.set_nome(self._get_numero_nome(valor))
+            vetor_nome.append(valor)
+        
+        return vetor_nome
+
+    
+    def _get_numero_nome(self,valor):
+        numero = self._testa_milhar(valor)
         return self.dicionario[numero]
 
+    def _testa_milhar(self,valor):
+        numero_entrada = valor.numero
+        if valor.teste_milhar_dezena or valor.teste_milhar or valor.teste_e_milhar:
+            return int(numero_entrada/1000)
+        else:
+            return numero_entrada
 
-   
+
+    # def _deci_de_vetor(self):
+    #     if (not self.vetor_dados.tes_case_especial_19):
+    #         if (not self.vetor_dados.tes_case_especial_5 ) :
+    #             if(not self.test_case_especial_1):
+    #                 self._caminho_minimo()
+    
+    def _caminho_minimo(self):
+        pass
+
 
     
+        # self.teste_0 = self.numero == 0
+        # # é a unidade
+        # self.teste_unidade = self.numero  < 10  # 1
+        # self.teste_dezena = self.numero  < 100 and not self.teste_unidade  #10
+        # self.teste_centena = self.numero  < 1000 and not self.teste_dezena and not self.teste_unidade #900
+        # self.teste_e_milhar = self.numero == 1000
+        # self.teste_milhar = self.numero  < 10000 and not self.teste_e_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade # 9000
+        # self.teste_milhar_dezena = self.numero <= 100000 and not self.teste_e_milhar and not self.teste_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade #99000
+
+
+
+
     
+
+
+
+        # teste case para quando aconteceu alguma execao no vetor, 19,18
+
+    # teste case para quando so vem um numero
+    
+
+    # preciso escrever a conversao para ter certeza disso.
+    # teste case se tem algum vetor zerado
+    # esse ainda nao tenho certeza se vou usar
+    # provavelmente nao
+    # self.tes_case_especial_0 
 
     
     
