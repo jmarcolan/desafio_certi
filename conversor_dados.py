@@ -1,8 +1,105 @@
-class Vetor_dados():
-    # essa classe precisa passar por dois processos de refatoracao
-    # - Um para tirar o que nao importa
-    # - Um para ela conseguir encontrar seu propio nome
+# Classe usada para o conversor.
+class Conversor:
+    def __init__(self,vetor_dados):
+        self.compatibilizador =  Arrumando_entrada(vetor_dados)
+        self.vetor_dados_compatibilizados = self.compatibilizador.get_lista_valores()
+        self.vetor_dados = Vetor_dados(self.vetor_dados_compatibilizados)                           
+        self.nome = self.vetor_dados.get_nome()
 
+    def get_nome_extenso(self):
+        return self.nome
+
+
+class Arrumando_entrada():
+    def __init__(self,vetor_dados):
+        self.vetor_dados = vetor_dados
+        self.vetor_dados_saida = self._arrumando_entrada()
+
+    
+    #  unica funcao que é necessaria saber para usar a classe.
+    def get_lista_valores(self):
+        return self.vetor_dados_saida
+
+
+    
+    def _inverte_a_lista(self):
+        list_invertida = list(reversed(self.vetor_dados))
+        return list_invertida
+
+
+    
+    def _encontrando_posicao_critica(self):
+        self.list_invertida = self._inverte_a_lista()
+
+        # self.list_invertida = list(reversed(self.vetor_dados))
+        pos_critica = []
+        regra_tamanho_3 = len(self.list_invertida) >= 2
+        regra_tamanho_5 = len(self.list_invertida) >= 5
+
+        if regra_tamanho_3:
+            pos_critica.append(1)
+        
+        if regra_tamanho_5:
+            pos_critica.append(4)
+
+        return pos_critica
+
+
+
+    def _teste_posicao_critic(self,i):
+        for cont,critica in enumerate(self.pos_critica):
+                if i == critica:
+                    return self._testando_se_aconteceu_exececao(cont)
+        return False
+
+    def _testando_se_aconteceu_exececao(self,cont):
+        return self.excecoes[cont]
+
+
+
+    def concerta_vetor(self,saida,valor,i):
+        saida.pop(len(saida)-1) #tirando o ultimo valor da lista
+        valor_1 = self.list_invertida[i] + self.list_invertida[i-1]
+        saida.append(valor_1)
+
+
+    def _arrumando_entrada(self):
+        self.pos_critica = self._encontrando_posicao_critica()
+        self.excecoes = self._testando_regra_excecao()
+        
+
+        saida = []
+        for i,valor in enumerate(self.list_invertida):
+            if self._teste_posicao_critic(i):
+                self.concerta_vetor(saida,valor,i)
+            else:
+                saida.append(valor)
+
+        return list(reversed(saida))
+
+    def _testando_regra_excecao(self):
+        self.pos_critica = self._encontrando_posicao_critica()
+
+        resul_regra = []
+        for pos_critica in self.pos_critica:
+            regra_milhar = self.list_invertida[pos_critica] >= 10000
+
+            if regra_milhar:
+                valor_teste = int(self.list_invertida[pos_critica] /1000) #forcando ser inteiro
+            else:
+                valor_teste = self.list_invertida[pos_critica]
+
+
+                
+            regra = valor_teste < 20
+            resul_regra.append(regra)
+        
+        return resul_regra
+
+
+
+
+class Vetor_dados():
     # lista de entrada tem que ser ja a lista tratada para o 19
     def __init__(self,list_entrada):
         self.vetor_dados_traduzidos = list_entrada
@@ -16,8 +113,7 @@ class Vetor_dados():
 
     def get_nome(self):
         return self.nome
-
-        
+ 
     def _get_cases(self):
         
         self.tamanho = len(self.vetor_dados_traduzidos)
@@ -198,116 +294,5 @@ class Converte_numero:
             return int(valor/1000)
         else:
             return valor
-
-
-
-
-
-
-# Classe usada para o conversor.
-class Conversor:
-    def __init__(self,vetor_dados):
-        self.compatibilizador =  Arrumando_entrada(vetor_dados)
-        self.vetor_dados_compatibilizados = self.compatibilizador.get_lista_valores()
-        self.vetor_dados = Vetor_dados(self.vetor_dados_compatibilizados)                           
-        self.nome = self.vetor_dados.get_nome()
-
-    def get_nome_extenso(self):
-        return self.nome
-
-
-
-
-
-
-
-
-
-# arrumando a entrada.
-class Arrumando_entrada():
-    def __init__(self,vetor_dados):
-        self.vetor_dados = vetor_dados
-        self.vetor_dados_saida = self._arrumando_entrada()
-
-    
-    #  unica funcao que é necessaria saber para usar a classe.
-    def get_lista_valores(self):
-        return self.vetor_dados_saida
-
-
-    
-    def _inverte_a_lista(self):
-        list_invertida = list(reversed(self.vetor_dados))
-        return list_invertida
-
-
-    
-    def _encontrando_posicao_critica(self):
-        self.list_invertida = self._inverte_a_lista()
-
-        # self.list_invertida = list(reversed(self.vetor_dados))
-        pos_critica = []
-        regra_tamanho_3 = len(self.list_invertida) >= 2
-        regra_tamanho_5 = len(self.list_invertida) >= 5
-
-        if regra_tamanho_3:
-            pos_critica.append(1)
-        
-        if regra_tamanho_5:
-            pos_critica.append(4)
-
-        return pos_critica
-
-
-
-    def _teste_posicao_critic(self,i):
-        for cont,critica in enumerate(self.pos_critica):
-                if i == critica:
-                    return self._testando_se_aconteceu_exececao(cont)
-        return False
-
-    def _testando_se_aconteceu_exececao(self,cont):
-        return self.excecoes[cont]
-
-
-
-    def concerta_vetor(self,saida,valor,i):
-        saida.pop(len(saida)-1) #tirando o ultimo valor da lista
-        valor_1 = self.list_invertida[i] + self.list_invertida[i-1]
-        saida.append(valor_1)
-
-
-    def _arrumando_entrada(self):
-        self.pos_critica = self._encontrando_posicao_critica()
-        self.excecoes = self._testando_regra_excecao()
-        
-
-        saida = []
-        for i,valor in enumerate(self.list_invertida):
-            if self._teste_posicao_critic(i):
-                self.concerta_vetor(saida,valor,i)
-            else:
-                saida.append(valor)
-
-        return list(reversed(saida))
-
-    def _testando_regra_excecao(self):
-        self.pos_critica = self._encontrando_posicao_critica()
-
-        resul_regra = []
-        for pos_critica in self.pos_critica:
-            regra_milhar = self.list_invertida[pos_critica] >= 10000
-
-            if regra_milhar:
-                valor_teste = int(self.list_invertida[pos_critica] /1000) #forcando ser inteiro
-            else:
-                valor_teste = self.list_invertida[pos_critica]
-
-
-                
-            regra = valor_teste < 20
-            resul_regra.append(regra)
-        
-        return resul_regra
 
 
