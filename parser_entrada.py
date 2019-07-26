@@ -1,14 +1,55 @@
-
+import re
 
 class Validando_entrada:
     def __init__(self,string):
         self.string_entrada = string
         
-        self._validando()
+       
+    def get_test_valido(self):
+        return self._testa_numero_valido()
+      
+
+    # tou setando que não é valido valor +++999
+    def get_string_valida(self):
+        # se for um sinal positivo na frente
+        if self._testa_sinal_positivo() :
+            if self._testa_numero_valido() :
+                return self.string_entrada[1:len(self.string_entrada)]
+            else:
+                return "nao é uma entrada valida"
+        else:
+            if self._testa_numero_valido() :
+                return self.string_entrada
+            else:
+                return "nao é uma entrada valida"
+        
 
 
-    def _validando(self):
-        pass
+    def _testa_numero_valido(self):
+        # referencias
+        # https://stackoverflow.com/questions/8586346/python-regex-for-integer/8586432
+        # https://docs.python.org/3/howto/regex.html
+        # https://stackoverflow.com/questions/1649435/regular-expression-to-limit-number-of-characters-to-10
+        # testa para ter os simbolos +-
+        # os numeros podem variarar de 0 a 9
+        # pode ter de 1 a 5 numeros
+        testador_valida_entrada = re.compile("^[-+]?[0-9]{1,5}$")
+
+        if None != testador_valida_entrada.match(self.string_entrada):
+            return True
+        else: 
+            return False
+
+
+    def _testa_sinal_positivo(self):
+        # testa se tem exatamente 1 +
+        test_sinal_positivo = re.compile("^[+][0-9]{1,5}$")
+
+        if None != test_sinal_positivo.match(self.string_entrada):
+            return True
+        else: 
+            return False
+        
         # noa pode ter letra
         # nao pode estar fora do range
         # nao pode ser numero fracionado
