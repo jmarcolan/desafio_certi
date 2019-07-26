@@ -2,15 +2,12 @@ class Vetor_dados():
     # essa classe precisa passar por dois processos de refatoracao
     # - Um para tirar o que nao importa
     # - Um para ela conseguir encontrar seu propio nome
-    
+
     # lista de entrada tem que ser ja a lista tratada para o 19
     def __init__(self,list_entrada):
-        # self.vetor_dados_originais = vetor_dados
         self.vetor_dados_traduzidos = list_entrada
-
         self.nova_strutura_dados = self._estrutura_numeros()
         self._get_cases()
-
         self.conversor = Converte_vetor_string(self)
         self._set_nome()
 
@@ -24,7 +21,6 @@ class Vetor_dados():
     def _get_cases(self):
         
         self.tamanho = len(self.vetor_dados_traduzidos)
-
         self.tes_tamanho_igual_1= len(self.vetor_dados_traduzidos) == 1
         self.tes_tamanho_igual_2= len(self.vetor_dados_traduzidos) == 2
         self.tes_tamanho_igual_3= len(self.vetor_dados_traduzidos) == 3
@@ -32,18 +28,8 @@ class Vetor_dados():
         # teste case para quando for 5 valores
         self.tes_case_especial_5 = len(self.vetor_dados_traduzidos) == 5
 
-        # teste case para quando aconteceu alguma execao no vetor, 19,18
-        # self.tes_case_especial_19 = len(self.vetor_dados_originais) > len(self.vetor_dados_traduzidos)
-
-        # # teste case para quando so vem um numero
-        # self.test_case_especial_1 = len(self.vetor_dados_originais)  == 1 
-
 
         self.tes_case_mil_mil = self._get_mil_mil()
-        
-        # preciso escrever a conversao para ter certeza disso.
-        # teste case se tem algum vetor zerado
-        # self.tes_case_especial_0 = self._vetor_tem_zero()
 
     # verificar para que o vetor de dados os numeros ja tenham nome
     def _get_mil_mil(self):
@@ -51,14 +37,11 @@ class Vetor_dados():
         for valor in self.nova_strutura_dados:
             if valor.teste_e_milhar or valor.teste_milhar or valor.teste_milhar_dezena:
                 cont = cont + 1
-        
         if(cont == 2):
             return True
         else:
             return False
         
-
-
 
     def _estrutura_numeros(self):
         nova_strutura_dados =[]
@@ -66,15 +49,6 @@ class Vetor_dados():
             nova_strutura_dados.append(Numero(dado))
         return nova_strutura_dados
 
-    # olhar pq nao usa as propiedades da classe Numero
-    # def _vetor_tem_zero(self):
-    #     for elemento in self.vetor_dados_originais:
-    #         if elemento == 0:
-    #             return True
-            
-    #     return False
-    
-    
 
 class Converte_vetor_string:
     def __init__(self, vetor_dados):
@@ -90,15 +64,12 @@ class Converte_vetor_string:
         if(self.vetor_dados_objeto.tes_tamanho_igual_4):
             return "{0} e {1} e {2} e {3}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3])
             
-        
         if(self.vetor_dados_objeto.tes_tamanho_igual_3):
             return "{0} e {1} e {2}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2])
             
-    
         if(self.vetor_dados_objeto.tes_tamanho_igual_2):
             return "{0} e {1}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1])
             
-           
         if(self.vetor_dados_objeto.tes_tamanho_igual_1):
             # tratar o caso do 100
             # refatorar
