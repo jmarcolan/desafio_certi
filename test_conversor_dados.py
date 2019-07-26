@@ -185,6 +185,52 @@ def test_c_Converte_numero():
 
 
 
+def test_c_Conversor_dados_nome():
+        bloco_teste = [ [1000, 100,40,2],
+                    [20000,9000, 300,19],
+                    [200, 20, 2],
+                    [19],
+                    [20,9],
+                    [19000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [19000, 300,19],
+                    [1],
+                    [20000,9000, 300,19],
+                    [90000,4000,500,80,7],
+                    [1],
+                    [10],
+                    [100],
+                    [1000],
+                    [2000],
+                    [5000]]
+
+        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+                              'vinte e nove mil e trezentos e dezenove',
+                               'duzentos e vinte e dois',
+                                'dezenove',
+                                'vinte e nove',
+                                 'dezenove mil e trezentos e vinte e um',
+                                 'vinte e nove mil e trezentos e vinte e um',
+                                 'dezenove mil e trezentos e dezenove',
+                                 'um',
+                                 'vinte e nove mil e trezentos e dezenove',
+                                 'noventa e quatro mil e quinhentos e oitenta e sete',
+                                 'um',
+                                 'dez',
+                                 'cem',
+                                 'um mil',
+                                 'dois mil',
+                                 'cinco mil']
+
+        for count,teste in enumerate(bloco_teste):
+                recebe = Conversor(teste)
+
+                vetor_palavras = recebe.get_nome_extenso()
+                
+                # palavra = recebe.valores_convertidos_vetor._deci_de_vetor()
+                # print(vetor_palavras)
+                assert vetor_palavras == bloco_teste_saida[count]
+
 def test_c_Vetor_dados_nome():
         # o teste tem que ser com os valores tratados
         bloco_teste = [ [1000, 100,40,2],

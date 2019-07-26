@@ -204,18 +204,17 @@ class Converte_numero:
 
 
 
-
-class Recebendo_dados:
+# Classe usada para o conversor.
+class Conversor:
     def __init__(self,vetor_dados):
-        self.parser_entrada = Arrumando_entrada(vetor_dados)     
-        self.list_entrada = self.parser_entrada.get_lista_valores()
-        self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
+        self.compatibilizador =  Arrumando_entrada(vetor_dados)
+        self.vetor_dados_compatibilizados = self.compatibilizador.get_lista_valores()
+        self.vetor_dados = Vetor_dados(self.vetor_dados_compatibilizados)                           
+        self.nome = self.vetor_dados.get_nome()
 
-        self.valores_convertidos = Converte_numero(self.vetor_dados)
-        vetor_dados = self.valores_convertidos._get_vetor()
-        self.valores_convertidos_vetor = Converte_vetor_string(self.vetor_dados)
+    def get_nome_extenso(self):
+        return self.nome
 
- 
 
 
 
