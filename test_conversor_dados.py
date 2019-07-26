@@ -213,5 +213,28 @@ def test_numero_propiedades():
         numero_ = Numero(teste)
         print(numero_)
 
+def test_numero_vetor_dados():
+    bloco_teste = [ [1000, 0,40,2],
+                    [20000,9000, 300,10,9],
+                    [200, 20, 2],
+                    [10,9],
+                    [20,9],
+                    [10000,9000, 300,20,1],
+                    [20000,9000, 300,20,1],
+                    [10000,9000, 300,10,9],
+                    [1],
+                    [20000,9000, 300,10,9],
+                    [90000,4000,500,80,7],
+                    [1],
+                    [10],
+                    [100],
+                    [1000],
+                    [2000],
+                    [5000]]
+
+    for count,teste in enumerate(bloco_teste):
+        numero_ = Recebendo_dados(teste)
+        print(numero_)
+
 #         saida = parser_entrada._get_cases()
 

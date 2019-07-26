@@ -9,13 +9,13 @@ class Vetor_dados():
         
     def _get_cases(self):
         # teste case para quando for 5 valores
-        self.tes_case_especial_5 = len(self.parser_entrada.vetor_dados) == 5
+        self.tes_case_especial_5 = len(self.vetor_dados_originais) == 5
 
         # teste case para quando aconteceu alguma execao no vetor, 19,18
-        self.tes_case_especial_19 = len(self.parser_entrada.vetor_dados) > len(self.list_entrada)
+        self.tes_case_especial_19 = len(self.vetor_dados_originais) > len(self.vetor_dados_traduzidos)
 
         # teste case para quando so vem um numero
-        self.test_case_especial_1 = self.tes_case_especial_5  == 1 
+        self.test_case_especial_1 = len(self.vetor_dados_originais)  == 1 
 
         # preciso escrever a conversao para ter certeza disso.
         # teste case se tem algum vetor zerado
@@ -29,11 +29,11 @@ class Vetor_dados():
         return nova_strutura_dados
 
     def _vetor_tem_zero(self):
-            for elemento in self.list_entrada:
-                if elemento == 0:
-                    return True
-                
-            return False
+        for elemento in self.vetor_dados_originais:
+            if elemento == 0:
+                return True
+            
+        return False
         
 
         
@@ -59,7 +59,18 @@ class Numero():
         self.teste_milhar_dezena = self.numero <= 100000 and not self.teste_e_milhar and not self.teste_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade #99000
 
 
-       
+
+
+class Recebendo_dados:
+    def __init__(self,vetor_dados):
+        self.parser_entrada = Arrumando_entrada(vetor_dados)     
+        self.list_entrada = self.parser_entrada.get_lista_valores()
+        self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
+
+
+
+
+
         
 
 class Converte_numero:
@@ -105,13 +116,8 @@ class Converte_numero:
             1000:"mil"
             }
 
-        self.parser_entrada = Arrumando_entrada(vetor_dados)     
-        
-        self.list_entrada = self.parser_entrada.get_lista_valores()
-
-
-    def _get_numero_nome(self):
-        return self.dicionario[self.numero]
+    def _get_numero_nome(self,numero):
+        return self.dicionario[numero]
 
 
    
@@ -122,109 +128,109 @@ class Converte_numero:
     
     
     
-    def _decidir_saida_string(self):
-        pass
+    # def _decidir_saida_string(self):
+    #     pass
         
 
-    # Precissa urgentemente ser refatorado
-    def _cria_vetor_frase(self):
-        self.lista_nomes = self._cria_lista_nomes()
-        test_case_especial_1 = self.tes_case_especial_5  == 1 
-        test_case_especial_5 = self.tes_case_especial_5  == 5
+    # # Precissa urgentemente ser refatorado
+    # def _cria_vetor_frase(self):
+    #     self.lista_nomes = self._cria_lista_nomes()
+    #     test_case_especial_1 = self.tes_case_especial_5  == 1 
+    #     test_case_especial_5 = self.tes_case_especial_5  == 5
 
-        list_string =[]
-        # caso o valor seja inteiro so tenha 1 no array [300] [4000]
-        if test_case_especial_1:
-            for dici_convertido in self.lista_nomes:
-            #codigo repetido.
-                palavra_saida = ""
-                numero_entrada = dici_convertido["num_s"]
-                palavra = dici_convertido["num_ext"]
+    #     list_string =[]
+    #     # caso o valor seja inteiro so tenha 1 no array [300] [4000]
+    #     if test_case_especial_1:
+    #         for dici_convertido in self.lista_nomes:
+    #         #codigo repetido.
+    #             palavra_saida = ""
+    #             numero_entrada = dici_convertido["num_s"]
+    #             palavra = dici_convertido["num_ext"]
 
       
 
-                self._decidir_saida_string()
-                if teste_unidade:
-                    palavra_saida = "{}".format(palavra)
+    #             self._decidir_saida_string()
+    #             if teste_unidade:
+    #                 palavra_saida = "{}".format(palavra)
 
-                if teste_dezena or teste_centena :
-                    palavra_saida = "{}".format(palavra)
+    #             if teste_dezena or teste_centena :
+    #                 palavra_saida = "{}".format(palavra)
                 
-                if teste_milhar_dezena or teste_milhar:
-                    palavra_saida = "{} mil".format(palavra)
+    #             if teste_milhar_dezena or teste_milhar:
+    #                 palavra_saida = "{} mil".format(palavra)
 
 
-                list_string.append(palavra_saida)
-        else:
+    #             list_string.append(palavra_saida)
+    #     else:
 
-            for i,dici_convertido in enumerate(self.lista_nomes):
-                test_case_especial_primeiro_1 = i == 0  
-                #codigo repetido.
-                palavra_saida = ""
-                numero_entrada = dici_convertido["num_s"]
-                palavra = dici_convertido["num_ext"]
+    #         for i,dici_convertido in enumerate(self.lista_nomes):
+    #             test_case_especial_primeiro_1 = i == 0  
+    #             #codigo repetido.
+    #             palavra_saida = ""
+    #             numero_entrada = dici_convertido["num_s"]
+    #             palavra = dici_convertido["num_ext"]
 
 
-                # concerteza refatorar isso.
-                teste_unidade = numero_entrada < 10  # 1
-                teste_dezena = numero_entrada < 100 and not teste_unidade  #10
-                teste_centena = numero_entrada < 1000 and not teste_dezena and not teste_unidade #900
-                # tem que testar para igual
-                teste_milhar = numero_entrada >= 1000 #and not teste_centena and not teste_dezena and not teste_unidade # 9000
-                # teste_milhar_dezena = numero_entrada < 100000 and not teste_milhar and not teste_centena and not teste_dezena and not teste_unidade #99000
+    #             # concerteza refatorar isso.
+    #             teste_unidade = numero_entrada < 10  # 1
+    #             teste_dezena = numero_entrada < 100 and not teste_unidade  #10
+    #             teste_centena = numero_entrada < 1000 and not teste_dezena and not teste_unidade #900
+    #             # tem que testar para igual
+    #             teste_milhar = numero_entrada >= 1000 #and not teste_centena and not teste_dezena and not teste_unidade # 9000
+    #             # teste_milhar_dezena = numero_entrada < 100000 and not teste_milhar and not teste_centena and not teste_dezena and not teste_unidade #99000
 
-                # esse teste parece nao estar sendo util 
-                if teste_unidade:
-                    palavra_saida = "{}".format(palavra)
+    #             # esse teste parece nao estar sendo util 
+    #             if teste_unidade:
+    #                 palavra_saida = "{}".format(palavra)
 
-                if teste_dezena or teste_centena :
-                    palavra_saida = "{} e ".format(palavra)
+    #             if teste_dezena or teste_centena :
+    #                 palavra_saida = "{} e ".format(palavra)
 
-                if teste_milhar:
-                    palavra_saida = "{} mil e ".format(palavra)
+    #             if teste_milhar:
+    #                 palavra_saida = "{} mil e ".format(palavra)
                 
-                if test_case_especial_5:
-                    if((teste_milhar) and test_case_especial_primeiro_1):
-                        palavra_saida = "{} e".format(palavra)
-                    else:
-                        palavra_saida = "{} mil e ".format(palavra)
+    #             if test_case_especial_5:
+    #                 if((teste_milhar) and test_case_especial_primeiro_1):
+    #                     palavra_saida = "{} e".format(palavra)
+    #                 else:
+    #                     palavra_saida = "{} mil e ".format(palavra)
 
-                list_string.append(palavra_saida)
+    #             list_string.append(palavra_saida)
         
-        return list_string
+    #     return list_string
 
-    # fazer algumas proteções para casa o valor nao tenha no dicionario
-    # tem que assegurar que o numero seja um inteiro
-    def _converte_numero(self,numero):
-        return 
+    # # fazer algumas proteções para casa o valor nao tenha no dicionario
+    # # tem que assegurar que o numero seja um inteiro
+    # def _converte_numero(self,numero):
+    #     return 
     
 
   
-    def _cria_lista_nomes(self):
-        list_nomes = []
-        for numero_entrada in self.list_entrada:
+    # def _cria_lista_nomes(self):
+    #     list_nomes = []
+    #     for numero_entrada in self.list_entrada:
            
-            teste_milhar_milhar = numero_entrada > 1000 
-            teste_milhar_igual_milhar = numero_entrada == 1000 
-            # teste_milhar = numero_entrada >= 900 and not teste_milhar_dezena # 9000
+    #         teste_milhar_milhar = numero_entrada > 1000 
+    #         teste_milhar_igual_milhar = numero_entrada == 1000 
+    #         # teste_milhar = numero_entrada >= 900 and not teste_milhar_dezena # 9000
 
-            # teste_milhar = numero_entrada > 1000 and numero_entrada < 10000
-            # teste_milhar_dezena = numero_entrada >= 9999
+    #         # teste_milhar = numero_entrada > 1000 and numero_entrada < 10000
+    #         # teste_milhar_dezena = numero_entrada >= 9999
 
-            if teste_milhar_milhar:
-                numero = int(numero_entrada/1000)
-            elif teste_milhar_igual_milhar :
-                numero = numero_entrada
-            else:
-                numero = numero_entrada
+    #         if teste_milhar_milhar:
+    #             numero = int(numero_entrada/1000)
+    #         elif teste_milhar_igual_milhar :
+    #             numero = numero_entrada
+    #         else:
+    #             numero = numero_entrada
             
         
     
-            list_nomes.append(
-                {"num_s":numero_entrada,
-                 "num_ext":self._converte_numero(numero)})
+    #         list_nomes.append(
+    #             {"num_s":numero_entrada,
+    #              "num_ext":self._converte_numero(numero)})
                 
-        return list_nomes
+    #     return list_nomes
         
 
 
