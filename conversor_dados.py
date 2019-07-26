@@ -69,9 +69,15 @@ class Vetor_dados():
    
 
 class Numero():
+    
     def __init__(self, numero):
         self.numero = numero
         self._get_qualificador()
+        self.conversor = Converte_numero(self)
+        
+        self._set_nome()
+
+
 
     def _get_qualificador(self):
         # é o zero
@@ -86,24 +92,16 @@ class Numero():
 
 
     #setar o nome do numero 
-    def set_nome(self, nome_string):
-        self.nome = nome_string
+    def _set_nome(self):
+        self.nome = self.conversor.get_nome_extenso()
+    
+    def get_nome(self):
+        return self.nome
 
-
-class Recebendo_dados:
-    def __init__(self,vetor_dados):
-        self.parser_entrada = Arrumando_entrada(vetor_dados)     
-        self.list_entrada = self.parser_entrada.get_lista_valores()
-        self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
-
-        self.valores_convertidos = Converte_numero(self.vetor_dados)
-        vetor_dados = self.valores_convertidos._get_vetor()
-        self.valores_convertidos_vetor = Converte_vetor_string(self.vetor_dados)
-
- 
 
 class Converte_numero:
-    def __init__(self,vetor_dados):
+    # o numero tem que ser um objeto da classe Numero
+    def __init__(self,numero):
         self.dicionario ={
             0:"",
             1:"um",
@@ -144,34 +142,43 @@ class Converte_numero:
             900:"novecentos",
             1000:"mil"
             }
-        self.vetor_dados = vetor_dados
+        self.numero_objeto = numero
 
     
     # usada para receber valores 
-    def _get_vetor(self):
-        vetor = self.vetor_dados.nova_strutura_dados
-        vetor_nome = []
-        for valor in vetor:
-            valor.set_nome(self._get_numero_nome(valor))
-            vetor_nome.append(valor)
-        
-        # self.vetor_dados.nova_strutura_dados = vetor_nome
-        return vetor_nome
+    def get_nome_extenso(self):
+        return self._encontra_numero_nome(self.numero_objeto.numero)
 
     
-    def _get_numero_nome(self,valor):
-        numero = self._testa_milhar(valor)
+    def _encontra_numero_nome(self,numero_e):
+        # Aqui é numero_e é um valor inteiro
+        numero = self._testa_milhar(numero_e)
         return self.dicionario[numero]
 
     def _testa_milhar(self,valor):
-        numero_entrada = valor.numero
-        if valor.teste_milhar_dezena or valor.teste_milhar or valor.teste_e_milhar:
-            return int(numero_entrada/1000)
+        if self.numero_objeto.teste_milhar_dezena or self.numero_objeto.teste_milhar or self.numero_objeto.teste_e_milhar:
+            return int(valor/1000)
         else:
-            return numero_entrada
+            return valor
 
-    def _caminho_minimo(self):
-        pass
+
+
+
+
+
+
+class Recebendo_dados:
+    def __init__(self,vetor_dados):
+        self.parser_entrada = Arrumando_entrada(vetor_dados)     
+        self.list_entrada = self.parser_entrada.get_lista_valores()
+        self.vetor_dados = Vetor_dados(self.parser_entrada.vetor_dados,self.list_entrada)
+
+        self.valores_convertidos = Converte_numero(self.vetor_dados)
+        vetor_dados = self.valores_convertidos._get_vetor()
+        self.valores_convertidos_vetor = Converte_vetor_string(self.vetor_dados)
+
+ 
+
 
 
 
@@ -242,151 +249,6 @@ class Converte_vetor_string:
         # so para testar.
         nome = self._deci_de_vetor(vetor_string)
         return nome
-
-
-
-
-
-        
-    
-
-
-        # self.teste_0 = self.numero == 0
-        # # é a unidade
-        # self.teste_unidade = self.numero  < 10  # 1
-        # self.teste_dezena = self.numero  < 100 and not self.teste_unidade  #10
-        # self.teste_centena = self.numero  < 1000 and not self.teste_dezena and not self.teste_unidade #900
-        # self.teste_e_milhar = self.numero == 1000
-        # self.teste_milhar = self.numero  < 10000 and not self.teste_e_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade # 9000
-        # self.teste_milhar_dezena = self.numero <= 100000 and not self.teste_e_milhar and not self.teste_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade #99000
-
-
-
-
-    
-
-
-
-        # teste case para quando aconteceu alguma execao no vetor, 19,18
-
-    # teste case para quando so vem um numero
-    
-
-    # preciso escrever a conversao para ter certeza disso.
-    # teste case se tem algum vetor zerado
-    # esse ainda nao tenho certeza se vou usar
-    # provavelmente nao
-    # self.tes_case_especial_0 
-
-    
-    
-    
-    # def _decidir_saida_string(self):
-    #     pass
-        
-
-    # # Precissa urgentemente ser refatorado
-    # def _cria_vetor_frase(self):
-    #     self.lista_nomes = self._cria_lista_nomes()
-    #     test_case_especial_1 = self.tes_case_especial_5  == 1 
-    #     test_case_especial_5 = self.tes_case_especial_5  == 5
-
-    #     list_string =[]
-    #     # caso o valor seja inteiro so tenha 1 no array [300] [4000]
-    #     if test_case_especial_1:
-    #         for dici_convertido in self.lista_nomes:
-    #         #codigo repetido.
-    #             palavra_saida = ""
-    #             numero_entrada = dici_convertido["num_s"]
-    #             palavra = dici_convertido["num_ext"]
-
-      
-
-    #             self._decidir_saida_string()
-    #             if teste_unidade:
-    #                 palavra_saida = "{}".format(palavra)
-
-    #             if teste_dezena or teste_centena :
-    #                 palavra_saida = "{}".format(palavra)
-                
-    #             if teste_milhar_dezena or teste_milhar:
-    #                 palavra_saida = "{} mil".format(palavra)
-
-
-    #             list_string.append(palavra_saida)
-    #     else:
-
-    #         for i,dici_convertido in enumerate(self.lista_nomes):
-    #             test_case_especial_primeiro_1 = i == 0  
-    #             #codigo repetido.
-    #             palavra_saida = ""
-    #             numero_entrada = dici_convertido["num_s"]
-    #             palavra = dici_convertido["num_ext"]
-
-
-    #             # concerteza refatorar isso.
-    #             teste_unidade = numero_entrada < 10  # 1
-    #             teste_dezena = numero_entrada < 100 and not teste_unidade  #10
-    #             teste_centena = numero_entrada < 1000 and not teste_dezena and not teste_unidade #900
-    #             # tem que testar para igual
-    #             teste_milhar = numero_entrada >= 1000 #and not teste_centena and not teste_dezena and not teste_unidade # 9000
-    #             # teste_milhar_dezena = numero_entrada < 100000 and not teste_milhar and not teste_centena and not teste_dezena and not teste_unidade #99000
-
-    #             # esse teste parece nao estar sendo util 
-    #             if teste_unidade:
-    #                 palavra_saida = "{}".format(palavra)
-
-    #             if teste_dezena or teste_centena :
-    #                 palavra_saida = "{} e ".format(palavra)
-
-    #             if teste_milhar:
-    #                 palavra_saida = "{} mil e ".format(palavra)
-                
-    #             if test_case_especial_5:
-    #                 if((teste_milhar) and test_case_especial_primeiro_1):
-    #                     palavra_saida = "{} e".format(palavra)
-    #                 else:
-    #                     palavra_saida = "{} mil e ".format(palavra)
-
-    #             list_string.append(palavra_saida)
-        
-    #     return list_string
-
-    # # fazer algumas proteções para casa o valor nao tenha no dicionario
-    # # tem que assegurar que o numero seja um inteiro
-    # def _converte_numero(self,numero):
-    #     return 
-    
-
-  
-    # def _cria_lista_nomes(self):
-    #     list_nomes = []
-    #     for numero_entrada in self.list_entrada:
-           
-    #         teste_milhar_milhar = numero_entrada > 1000 
-    #         teste_milhar_igual_milhar = numero_entrada == 1000 
-    #         # teste_milhar = numero_entrada >= 900 and not teste_milhar_dezena # 9000
-
-    #         # teste_milhar = numero_entrada > 1000 and numero_entrada < 10000
-    #         # teste_milhar_dezena = numero_entrada >= 9999
-
-    #         if teste_milhar_milhar:
-    #             numero = int(numero_entrada/1000)
-    #         elif teste_milhar_igual_milhar :
-    #             numero = numero_entrada
-    #         else:
-    #             numero = numero_entrada
-            
-        
-    
-    #         list_nomes.append(
-    #             {"num_s":numero_entrada,
-    #              "num_ext":self._converte_numero(numero)})
-                
-    #     return list_nomes
-        
-
-
 
 
 

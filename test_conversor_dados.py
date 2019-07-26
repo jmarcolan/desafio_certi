@@ -109,6 +109,7 @@ def test_saida_arrumada():
         saida = parser_entrada._arrumando_entrada()
         assert saida == bloco_teste_saida[count]
 
+
 # Os testes precisam de refatoracao no seu nome
 # Os testes precisam de casos no qual de erro
 # Os negativos serão tratos a posteriori
@@ -143,7 +144,9 @@ def test_saida_arrumada():
 #         saida = parser_entrada._get_cases()
 #         print(saida)
 # arrumar o teste para ver se ele extrai as caracteristicas dos numeros
-def test_numero_propiedades():
+
+def test_c_Numero():
+        #caso fuja o valor do dicionario quebra e.g(9999)
     bloco_teste = [ 1,
                     9,
                     10,
@@ -155,12 +158,30 @@ def test_numero_propiedades():
                     2000,
                     5000,
                     10000,
-                    99999]
+                    9000]
 
     for count,teste in enumerate(bloco_teste):
         numero_ = Numero(teste)
         print(numero_)
+        # aqui dentro tem que testar se esta vinco as propiedade dos numero de forma correta
 
+def test_c_Converte_numero():
+        # notar que as entrada esperada aqui tem que ser do dicionario
+        bloco_teste = [ 1,
+                    9,
+                    10,
+                    19,
+                    90,
+                    100,
+                    900,
+                    1000,
+                    2000,
+                    5000,
+                    10000,
+                    9000]
+        for count,teste in enumerate(bloco_teste):
+                numero_ = Numero(teste)
+                print(numero_.get_nome())
 # tenho que arruamr esses testes
 # verificar se ele extrai as carracteristicas corretamente
 def test_numero_vetor_dados():
