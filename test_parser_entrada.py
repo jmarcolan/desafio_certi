@@ -128,7 +128,7 @@ def test_Validando_entrada_testa_numero():
     for count,teste in enumerate(bloco_teste):
 
         parser_entrada = Validando_entrada(teste)
-        saida = parser_entrada._testa_numero()
+        saida = parser_entrada._testa_numero_valido()
         
         assert saida == bloco_teste_saida[count]
 
