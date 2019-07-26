@@ -217,3 +217,36 @@ def test_Validando_entrada_testa_get_string_valida():
         saida = parser_entrada.get_string_valida()
         
         assert saida == bloco_teste_saida[count]
+
+
+def test_Entrada_dados_pega_vetor():
+    bloco_teste = ["100",
+                    "0",
+                    "-10",
+                    "000",
+                    "99999",
+                    "+99999",
+                    "-99999",
+
+                    "oi",
+                    "certi",
+                    ":D"]
+
+    bloco_teste_saida =[[100],
+                    [0],
+                    [10],
+                    [0],
+                    [90000, 9000, 900,90,9],
+                    [90000, 9000, 900,90,9],
+                    [90000, 9000, 900,90,9],
+
+                    "nao é uma entrada valida",
+                    "nao é uma entrada valida",
+                    "nao é uma entrada valida"]
+     
+    for count,teste in enumerate(bloco_teste):
+
+        parser_entrada = Entrada_dados(teste)
+        saida = parser_entrada.pega_vetor()
+        
+        assert saida == bloco_teste_saida[count]

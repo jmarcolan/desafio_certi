@@ -1,5 +1,35 @@
 import re
 
+
+class Entrada_dados:
+    def __init__(self, string_entrada):
+        self.string_entrada = string_entrada
+        # pega a entrada e valida,
+        self.validador = Validando_entrada(self.string_entrada)
+
+    def get_valida(self):
+        return self.validador.get_test_valido()
+        
+    def pega_vetor(self):
+        if self.validador.get_test_valido():
+            string = self.validador.get_string_valida()
+            return self._get_entrada(string)
+        
+        else:
+            # se nao for valida vai voltar a e strign q nao é valida
+            return self.validador.get_string_valida()
+    
+    # necessita refatorar tem 2 responsabilidade
+    def _get_entrada(self,string):
+        parser_entrada = Parser_entrada(string)
+        self.test_sinal_negativo = parser_entrada.get_sinal()
+        return parser_entrada.get_vetor_tratado()
+        
+    
+            
+
+
+
 class Validando_entrada:
     def __init__(self,string):
         self.string_entrada = string
@@ -55,11 +85,6 @@ class Validando_entrada:
         # nao pode ser numero fracionado
         # nao pode ser um valor vazio
         # retorna um boleano
-
-class Envio_resposta_json():
-    # classe quie sera usadao para configurar o texto de saida.
-    pass
-
 
 
 class Parser_entrada:
