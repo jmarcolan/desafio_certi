@@ -16,7 +16,6 @@ class Arrumando_entrada():
         self.vetor_dados_saida = self._arrumando_entrada()
 
     
-    #  unica funcao que é necessaria saber para usar a classe.
     def get_lista_valores(self):
         return self.vetor_dados_saida
 
