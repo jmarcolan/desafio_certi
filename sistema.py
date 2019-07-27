@@ -3,7 +3,6 @@ from conversor_dados import Conversor
 
 
 
-
 class Transforma_numero_extensao:
     def __init__(self,string):
 
