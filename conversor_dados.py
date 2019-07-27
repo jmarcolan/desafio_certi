@@ -193,8 +193,12 @@ class Converte_vetor_string:
             if valor.teste_dezena or valor.teste_centena :
                 palavra_saida = "{}".format(valor.nome)
 
-            if valor.teste_milhar or valor.teste_milhar_dezena or valor.teste_e_milhar :
+            if valor.teste_milhar or valor.teste_milhar_dezena :
                 palavra_saida = "{} mil".format(valor.nome)
+
+            if valor.teste_e_milhar:
+                palavra_saida = "mil"
+
 
             vetor_string.append(palavra_saida)
 
@@ -274,7 +278,7 @@ class Converte_numero:
             700:"setecentos",
             800:"oitocentos",
             900:"novecentos",
-            1000:"mil"
+            1000:""
             }
         self.numero_objeto = numero
 
@@ -287,6 +291,8 @@ class Converte_numero:
     def _encontra_numero_nome(self,numero_e):
         # Aqui é numero_e é um valor inteiro
         numero = self._testa_milhar(numero_e)
+
+        # resolvendo o bug do milhar
         return self.dicionario[numero]
 
     def _testa_milhar(self,valor):

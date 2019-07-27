@@ -204,7 +204,7 @@ def test_c_Conversor_dados_nome():
                     [2000],
                     [5000]]
 
-        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+        bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
                                'duzentos e vinte e dois',
                                 'dezenove',
@@ -218,7 +218,7 @@ def test_c_Conversor_dados_nome():
                                  'um',
                                  'dez',
                                  'cem',
-                                 'um mil',
+                                 'mil',
                                  'dois mil',
                                  'cinco mil']
 
@@ -251,7 +251,7 @@ def test_c_Vetor_dados_nome():
                     [2000],
                     [5000]]
 
-        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+        bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
                                'duzentos e vinte e dois',
                                 'dezenove',
@@ -265,7 +265,7 @@ def test_c_Vetor_dados_nome():
                                  'um',
                                  'dez',
                                  'cem',
-                                 'um mil',
+                                 'mil',
                                  'dois mil',
                                  'cinco mil']
 
