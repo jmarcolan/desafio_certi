@@ -96,7 +96,8 @@ def test_Validando_entrada_testa_numero():
                     ":D"
                     "----",
                     "++++",
-                    "+++9"
+                    "+++9",
+                    "---9"
                     "999999",
                     "-999999",
                     "+999999",
@@ -112,6 +113,7 @@ def test_Validando_entrada_testa_numero():
                     True,
                     True,
                     
+                    False,
                     False,
                     False,
                     False,
