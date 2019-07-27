@@ -249,7 +249,10 @@ def test_c_Vetor_dados_nome():
                     [100],
                     [1000],
                     [2000],
-                    [5000]]
+                    [5000],
+                    [1000,100],
+                    [9000,100],
+                    [19000, 100]]
 
         bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
@@ -267,7 +270,10 @@ def test_c_Vetor_dados_nome():
                                  'cem',
                                  'mil',
                                  'dois mil',
-                                 'cinco mil']
+                                 'cinco mil',
+                                 "mil e cem",
+                                 "nove mil e cem",
+                                 "dezenove mil e cem"]
 
         for count,teste in enumerate(bloco_teste):
                 recebe = Vetor_dados(teste)

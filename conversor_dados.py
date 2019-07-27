@@ -158,22 +158,30 @@ class Converte_vetor_string:
             return "{0} e {1} e {2} e {3} e {4}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3], vetor[4])
                   
         if(self.vetor_dados_objeto.tes_tamanho_igual_4):
+            vetor[3] = self._teste_cento(vetor[3])
             return "{0} e {1} e {2} e {3}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3])
             
         if(self.vetor_dados_objeto.tes_tamanho_igual_3):
+            vetor[2] = self._teste_cento(vetor[2])
             return "{0} e {1} e {2}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2])
             
         if(self.vetor_dados_objeto.tes_tamanho_igual_2):
+            vetor[1] = self._teste_cento(vetor[1])
             return "{0} e {1}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1])
             
         if(self.vetor_dados_objeto.tes_tamanho_igual_1):
-            # tratar o caso do 100
-            # refatorar
-            if("cento" == vetor[0]):
-                return "cem"
-            else:
-                return "{}".format(vetor[0])
+            vetor[0] = self._teste_cento(vetor[0])
+            return "{}".format(vetor[0])
             
+
+    def _teste_cento(self, string):
+        
+        test_cento = string == "cento"
+        if(test_cento):
+            return "cem"
+        else:
+            return string
+
 
     def _tratar_primeiro_mil(self,string):
         if(self.vetor_dados_objeto.tes_case_mil_mil):
@@ -259,7 +267,7 @@ class Converte_numero:
             15:"quinze",
             16:"dezeseis",
             17:"dezesete",
-            18:"dezoito",
+            18:"dezoito", 
             19:"dezenove",
             20:"vinte",
             30:"trinta",
