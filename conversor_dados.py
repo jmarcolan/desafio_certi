@@ -237,7 +237,7 @@ class Converte_numero:
     # o numero tem que ser um objeto da classe Numero
     def __init__(self,numero):
         self.dicionario ={
-            0:"",
+            0:"zero",
             1:"um",
             2:"dois",
             3:"tres",
