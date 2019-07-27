@@ -25,7 +25,7 @@ def test_Transforma_numero_extensao():
                         "94587"]
 
 
-        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+        bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
                                'duzentos e vinte e dois',
                                 'dezenove',
@@ -38,13 +38,13 @@ def test_Transforma_numero_extensao():
                                  'um',
                                  'dez',
                                  'cem',
-                                 'um mil',
+                                 'mil',
                                  'dois mil',
                                  'cinco mil',
-                                 "um mil e quarenta e dois",
+                                 "mil e quarenta e dois",
                                  "zero",
                                  'menos vinte e nove mil e trezentos e dezenove',
-                                 "menos um mil e quarenta e dois",
+                                 "menos mil e quarenta e dois",
                                  "noventa e quatro mil e quinhentos e oitenta e sete"
                                  ]
 
@@ -71,7 +71,7 @@ def test_Saida_Desafio_Certi():
                         "94587"]
 
 
-        bloco_teste_saida = ['{"extenso": "um mil e cento e quarenta e dois"}',
+        bloco_teste_saida = ['{"extenso": "mil e cento e quarenta e dois"}',
                         '{"extenso": "vinte e nove mil e trezentos e dezenove"}',
                         '{"extenso": "duzentos e vinte e dois"}',
                         '{"extenso": "dezenove"}',
@@ -79,7 +79,7 @@ def test_Saida_Desafio_Certi():
                         '{"extenso": "dezenove mil e trezentos e vinte e um"}',
                         '{"extenso": "um"}',
                         '{"extenso": "noventa e quatro mil e quinhentos e oitenta e sete"}',
-                        '{"extenso": "menos um mil e quarenta e dois"}',
+                        '{"extenso": "menos mil e quarenta e dois"}',
                         '{"extenso": "noventa e quatro mil e quinhentos e oitenta e sete"}'
                                  ]
 

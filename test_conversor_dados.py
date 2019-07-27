@@ -114,37 +114,6 @@ def test_saida_arrumada():
 # Os testes precisam de casos no qual de erro
 # Os negativos serão tratos a posteriori
 
-# comecar os testes para a classe Converte_numero
-
-        # assert saida == bloco_teste_saida[count]
-
-
-# def test_converte_numero_get_test_cases():
-
-#     bloco_teste = [ [1000, 0,40,2],
-#                     [20000,9000, 300,10,9],
-#                     [200, 20, 2],
-#                     [10,9],
-#                     [20,9],
-#                     [10000,9000, 300,20,1],
-#                     [20000,9000, 300,20,1],
-#                     [10000,9000, 300,10,9],
-#                     [1],
-#                     [20000,9000, 300,10,9],
-#                     [90000,4000,500,80,7],
-#                     [1],
-#                     [10],
-#                     [100],
-#                     [1000],
-#                     [2000],
-#                     [5000]]
-
-#     for count,teste in enumerate(bloco_teste):
-#         parser_entrada = Converte_numero(teste)
-#         saida = parser_entrada._get_cases()
-#         print(saida)
-# arrumar o teste para ver se ele extrai as caracteristicas dos numeros
-
 def test_c_Numero():
         #caso fuja o valor do dicionario quebra e.g(9999)
     bloco_teste = [ 1,
@@ -204,7 +173,7 @@ def test_c_Conversor_dados_nome():
                     [2000],
                     [5000]]
 
-        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+        bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
                                'duzentos e vinte e dois',
                                 'dezenove',
@@ -218,7 +187,7 @@ def test_c_Conversor_dados_nome():
                                  'um',
                                  'dez',
                                  'cem',
-                                 'um mil',
+                                 'mil',
                                  'dois mil',
                                  'cinco mil']
 
@@ -249,9 +218,12 @@ def test_c_Vetor_dados_nome():
                     [100],
                     [1000],
                     [2000],
-                    [5000]]
+                    [5000],
+                    [1000,100],
+                    [9000,100],
+                    [19000, 100]]
 
-        bloco_teste_saida = ['um mil e cento e quarenta e dois',
+        bloco_teste_saida = ['mil e cento e quarenta e dois',
                               'vinte e nove mil e trezentos e dezenove',
                                'duzentos e vinte e dois',
                                 'dezenove',
@@ -265,9 +237,12 @@ def test_c_Vetor_dados_nome():
                                  'um',
                                  'dez',
                                  'cem',
-                                 'um mil',
+                                 'mil',
                                  'dois mil',
-                                 'cinco mil']
+                                 'cinco mil',
+                                 "mil e cem",
+                                 "nove mil e cem",
+                                 "dezenove mil e cem"]
 
         for count,teste in enumerate(bloco_teste):
                 recebe = Vetor_dados(teste)
