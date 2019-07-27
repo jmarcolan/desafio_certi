@@ -77,12 +77,7 @@ def test_regra_excecao():
         saida = parser_entrada._testando_regra_excecao()
         
         assert saida == bloco_teste_saida[count]
-#     bloco_teste_resposta = [[200, 20, 2],
-#                     [19],[20,9],
-#                     [19000, 300,20,1],
-#                     [20000,9000, 300,20,1],
-#                     [19000, 300,19]]
-    
+
 
 def test_saida_arrumada():
 

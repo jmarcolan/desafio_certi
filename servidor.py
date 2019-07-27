@@ -4,6 +4,7 @@ from flask import Flask
 # from flask import jsonify
 import json
 
+import os
 app = Flask(__name__)
 
 class Saida_Desafio_Certi:
@@ -23,7 +24,8 @@ def hello1(string_entrada):
 
 
 if __name__ == "__main__":
-    app.run(host= '0.0.0.0')
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host= '0.0.0.0', port=port)
 
 
 
