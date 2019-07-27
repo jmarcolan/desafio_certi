@@ -10,7 +10,6 @@ def test_Transforma_numero_extensao():
                         "29321",
                         "19319",
                         "1",
-                        "29319",
                         "94587",
                         "1",
                         "10",
@@ -19,7 +18,10 @@ def test_Transforma_numero_extensao():
                         "2000",
                         "5000",
                         "1042",
-                        "0"]
+                        "0",
+                        "-29319",
+                        "-1042",
+                        "94587"]
 
 
         bloco_teste_saida = ['um mil e cento e quarenta e dois',
@@ -31,7 +33,6 @@ def test_Transforma_numero_extensao():
                                  'vinte e nove mil e trezentos e vinte e um',
                                  'dezenove mil e trezentos e dezenove',
                                  'um',
-                                 'vinte e nove mil e trezentos e dezenove',
                                  'noventa e quatro mil e quinhentos e oitenta e sete',
                                  'um',
                                  'dez',
@@ -40,7 +41,11 @@ def test_Transforma_numero_extensao():
                                  'dois mil',
                                  'cinco mil',
                                  "um mil e quarenta e dois",
-                                 "zero"]
+                                 "zero",
+                                 'menos vinte e nove mil e trezentos e dezenove',
+                                 "menos um mil e quarenta e dois",
+                                 "noventa e quatro mil e quinhentos e oitenta e sete"
+                                 ]
 
         for count,teste in enumerate(bloco_teste):
                 recebe = Transforma_numero_extensao(teste)

@@ -2,6 +2,9 @@ import re
 
 
 class Entrada_dados:
+    # tem que arrumar esse metodo
+    # no estado que esta pode dar error por nao
+    # invocar o metodo pega_vetor antes.
     def __init__(self, string_entrada):
         self.string_entrada = string_entrada
         # pega a entrada e valida,
@@ -10,6 +13,10 @@ class Entrada_dados:
     def get_valida(self):
         return self.validador.get_test_valido()
         
+       
+    def get_sinal(self):
+        return self.test_sinal_negativo
+
     def pega_vetor(self):
         if self.validador.get_test_valido():
             string = self.validador.get_string_valida()
