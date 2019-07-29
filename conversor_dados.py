@@ -1,10 +1,10 @@
-""" Módulo, documento, responsável por converter um vetor tratado de numeros (e.g., [1000,100,19]) em texto (e.g. mil e cento e dezenove)
+""" Módulo responsável por converter um vetor tratado de numeros (e.g., [1000,100,19]) em texto (e.g. mil e cento e dezenove)
 A classe "Conversor" é a classe responsável por agrupar os objetos das classes criadas nesse documento de forma que se tenha uma API de uso mais clara, com uma segmetação.
 
 Example:
     Um exemplo de como usar a classe é:
     literal blocks::
-        >>> teste = [20000,9000, 300,19]
+        >>> teste = [20000,9000, 300,19] # vetor tratado
         >>> recebe = Vetor_dados(teste)
 
         >>> vetor_palavras = recebe.get_nome()
