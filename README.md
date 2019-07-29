@@ -1,5 +1,5 @@
-# Desafio Certi
-O Servidor implementa uma interface de aplicação, (do ingles Interface Aplication, API) que se comunica pelo Protocolo de Transferencia de Hipertexto (termo do ingles Hypertext Transfer Protocol, HTTP), capaz de converter um numero inteiro escrito na sua versão algebrica para a sua versão por extenso. A API consegue converter numeros inteiros que estejam dentro do intervalo de -99999 até o valor 99999. Para acessar a API basta realizar uma requisição do tipo GET para a urn "/". Por exemplo ["/1234"](https://certi-desafio.herokuapp.com/1234). A saída do API é um texto formatado em JSON no qual só tem um par nome/valor: O par extensão/numero por extenso 
+# Desafio da CERTI
+O Servidor implementa uma interface de aplicação, (do ingles Interface Aplication, API) que se comunica pelo Protocolo de Transferencia de Hipertexto (termo do ingles Hypertext Transfer Protocol, HTTP), capaz de converter um numero inteiro escrito na sua versão algebrica para a sua versão por extenso. A API consegue converter numeros inteiros que estejam dentro do intervalo de -99999 até o valor 99999. Para acessar a API basta realizar uma requisição do tipo GET para a urn "/". Por exemplo ["/1234"](https://certi-desafio.herokuapp.com/1234). A saída do API é um texto formatado em JSON no qual só tem um par nome/valor: O par extensão/numero por extenso (e.g. { "extenso": "um" }) 
 
 ## Exemplos de usos:
  Exemplos de URL possiveis, com suas respectivas respostas esperadas:
@@ -18,7 +18,7 @@ O Servidor implementa uma interface de aplicação, (do ingles Interface Aplicat
 
 # Construindo o servidor
 
-A ultima versão do servidor está hospedada na nuvem dentro da plataforma do Heroku (www.heroku.com). As requisições podem ser feitas para a url: https://certi-desafio.herokuapp.com/. Pode ser que o servidor esteja desligado quando for feito a requisição GET a ele. Isso faz com que a primeira requisição feita a esse servidor possa demorar um pequeno tempo para responder.
+A ultima versão do servidor está hospedada na nuvem dentro da plataforma do Heroku (www.heroku.com). As requisições podem ser feitas para a URL: https://certi-desafio.herokuapp.com/. Pode ser que o servidor esteja desligado quando for feito a requisição GET a ele. Isso faz com que a primeira requisição feita a esse servidor possa demorar um pequeno tempo para ser respondida.
 
 
 ## Usando Docker
@@ -27,7 +27,7 @@ A ultima versão do servidor está hospedada na nuvem dentro da plataforma do He
 ```
 docker-compose up
 ```
-O servidor construido irá estar atendendo pela porta 5000. Nesse caso você conseguirá acessar a api pela URl: 127.0.0.1:5000/ 
+O servidor construido irá estar atendendo pela porta 5000. Nesse caso você conseguirá acessar a API pela URl: 127.0.0.1:5000/ 
 
 # Python 3.6
 É possivel construir e ligar o servidor apenas usando o Python 3.6. Para instalar as dependencias é necessário ter o Python 3.6 instalado no seu computador. Baixe a versão no site do [Python](https://www.python.org/downloads/release/python-369/). Após instalar o Python é necessário instalar as dependencias do projeto. Para isso abra um terminal na pasta clonada e digite o comando :
@@ -38,7 +38,7 @@ Após a instalação das bibliotecas necessárias ao projeto é possivel ligar o
 ```
 python servidor.py
 ```
-O servidor construido irá estar atendendo pela porta 5000. Nesse caso você conseguirá acessar a api pela URl: 127.0.0.1:5000/ 
+O servidor construido irá estar atendendo pela porta 5000. Nesse caso você conseguirá acessar a API pela URl: 127.0.0.1:5000/ 
 
 
 # Ferramentas usadas no projeto.
@@ -50,11 +50,11 @@ O projeto foi testado e construido no Windows 10 e foi escrito atravéz do ambie
 # Termos e documentação
 
 O projeto tem algumas extruturas de dados que possuem nomes. O:
-- vetor explodido é um vetor de numeros inteiros que contem uma sequencia de numeros que ao realizar a soma dos elementos geram um numero Inteiro. Por exemplo o numero 119 é explodido no vetor [100,10,9]. 
+- vetor explodido é um vetor de numeros inteiros que contem uma sequencia de numeros que ao realizar a soma dos elementos geram um numero Inteiro. Por exemplo o numero 119 é explodido no vetor "[100,10,9]". 
 
-- vetor tratado de numeros é um vetor que, também em sua soma geram o numero inteiro originário, porém o vetor é organizado para atender as exções de nomeclatura dos numeros (e.g., numero dezenove). Um vetor trato do numero 119 é o vetor: "[100,19]".
+- vetor tratado de numeros é um vetor que, também em sua soma geram o numero inteiro originário, porém o vetor é organizado para atender as exeções de nomeclatura dos numeros (e.g., numero dezenove). Um vetor trato do numero 119 é o vetor: "[100,19]".
 
-O resto da documentação pode ser vista nos módulos, [nas propostas de alterações aprovadas](https://github.com/jmarcolan/desafio_certi/pulls?q=is%3Apr+is%3Aclosed), nas [propostas de melhorias](https://github.com/jmarcolan/desafio_certi/issues) e nos[releases do projeto dentro desse github](https://github.com/jmarcolan/desafio_certi/releases).
+O resto da documentação pode ser vista nos módulos, [nas propostas de alterações aprovadas](https://github.com/jmarcolan/desafio_certi/pulls?q=is%3Apr+is%3Aclosed), nas [propostas de melhorias](https://github.com/jmarcolan/desafio_certi/issues) e nos [releases do projeto dentro desse github](https://github.com/jmarcolan/desafio_certi/releases).
 
 
 
