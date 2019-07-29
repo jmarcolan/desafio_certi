@@ -48,3 +48,17 @@ O ambiente de desenvolvimento usado foi o Visual Studio Code. O meu VSCode tinha
 # Heroku
 
 O servidor foi posto em produção usando o [site heroku](www.heroku.com)
+
+
+# Termos
+
+- vetor tratado de numeros. Exemplo a lista [100,10,9] se torna [100,19]
+
+- vetor explodido o numero 119 se torna a lista [100, 10, 9]
+
+
+Dcomentação seguindo estilo do google.
+https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
+.. _Google Python Style Guide:
+   http://google.github.io/styleguide/pyguide.html

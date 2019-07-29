@@ -1,6 +1,30 @@
-# Classe usada para o conversor.
+""" Módulo, documento, responsável por converter um vetor tratado de numeros (e.g., [1000,100,19]) em texto (e.g. mil e cento e dezenove)
+A classe "Conversor" é a classe responsável por agrupar os objetos das classes criadas nesse documento de forma que se tenha uma API de uso mais clara, com uma segmetação.
+
+Example:
+    Um exemplo de como usar a classe é:
+    literal blocks::
+        >>> teste = [20000,9000, 300,19]
+        >>> recebe = Vetor_dados(teste)
+
+        >>> vetor_palavras = recebe.get_nome()
+
+Todo:
+    * Ver notas dentro das classes.
+
+"""
+
+
+
 class Conversor:
+    """Converte um vetor tratado de numeros (e.g., [1000,100,19]) em texto (e.g. mil e cento e dezenove)
+    """
+
     def __init__(self,vetor_dados):
+        """ Inicializador
+        Args:
+            vetor_dados (array): Vetor tratados de numeros o numero "1119" vem na forma de (E.g. [1000,100,19]) .
+        """
         self.compatibilizador =  Arrumando_entrada(vetor_dados)
         self.vetor_dados_compatibilizados = self.compatibilizador.get_lista_valores()
         self.vetor_dados = Vetor_dados(self.vetor_dados_compatibilizados)                           
@@ -11,12 +35,27 @@ class Conversor:
 
 
 class Arrumando_entrada():
+    """Classe responsável por tratar a entrada e criar o vetor de numeros tratados.
+    Ele trata os numeros que tem a nomeclatura unica (e.g, quinze) para ocuparem apenas um elemento da lista.
+
+    """
     def __init__(self,vetor_dados):
+        """Inicializador
+        Args:
+            vetor_dados (array): Lista numérica explodida. Por exemplo, o numero 119 se torna o array [100, 10, 9].
+            
+        """
         self.vetor_dados = vetor_dados
         self.vetor_dados_saida = self._arrumando_entrada()
 
     
     def get_lista_valores(self):
+        """Retorna a lista numérica tratada.
+
+        Examples:
+            A lista [1000,100,10,9] se torna a lista [1000,100,19]
+
+        """
         return self.vetor_dados_saida
 
 
@@ -55,7 +94,7 @@ class Arrumando_entrada():
         return self.excecoes[cont]
 
 
-
+    # isso aqui deve ser sinalizado como um metodo "privado", pois deve ser usado apenas para efetuar logicas do proprio objeto
     def concerta_vetor(self,saida,valor,i):
         saida.pop(len(saida)-1) #tirando o ultimo valor da lista
         valor_1 = self.list_invertida[i] + self.list_invertida[i-1]
@@ -99,8 +138,27 @@ class Arrumando_entrada():
 
 
 class Vetor_dados():
-    # lista de entrada tem que ser ja a lista tratada para o 19
+    """Extrai caractristicas importantes da lista tratada e retornam o numero por extenso.
+
+    Note:
+        Essa classe tem a responsabilidade de extrair caracteristicas da lista tratada. Possivelmente, no futuro será necessário segmentar a responsabilidade de converter dela.
+        Uma forma seria fazer que o obj que converte o numero seja configurado a partir de uma variavel no método inicializador
+
+    Attributes:
+        tes_tamanho_igual_1 (boolean): Testa se o tamanho do array tem 1 de tamanho.
+        tes_tamanho_igual_2 (boolean): Testa se o tamanho do array tem 2 de tamanho.
+        tes_tamanho_igual_3 (boolean): Testa se o tamanho do array tem 3 de tamanho.
+        tes_tamanho_igual_4 (boolean): Testa se o tamanho do array tem 4 de tamanho.
+        tes_tamanho_igual_5 (boolean): Testa se o tamanho do array tem 5 de tamanho.
+        tes_case_mil_mil (boolean): Testa se existe dois numeros no array que podem receber a nomeclatura "mil".
+    """
+    
     def __init__(self,list_entrada):
+        """Extrai informações importantes
+        Args:
+            list_entrada (array): Lista numérica tratada. Por exemplo, o numero 119 se torna o array [100, 19].
+
+        """
         self.vetor_dados_traduzidos = list_entrada
         self.nova_strutura_dados = self._estrutura_numeros()
         self._get_cases()
@@ -110,7 +168,12 @@ class Vetor_dados():
     def _set_nome(self):
         self.nome = self.conversor.get_nome_extenso()
 
+    # melhorar a nomeclatura desse método
     def get_nome(self):
+        """str: Pega o valor por extenso do vetor tratado que foi construido o objeto
+        returns:
+            Retorna o nome por extenso da combinação de numero do vetor tratado.
+        """
         return self.nome
  
     def _get_cases(self):
@@ -126,7 +189,7 @@ class Vetor_dados():
 
         self.tes_case_mil_mil = self._get_mil_mil()
 
-    # verificar para que o vetor de dados os numeros ja tenham nome
+    # verificar para que o vetor de dados os numeros ja tenham nome (não sei o q isso quer disser, descobrir)
     def _get_mil_mil(self):
         cont = 0
         for valor in self.nova_strutura_dados:
@@ -146,12 +209,21 @@ class Vetor_dados():
 
 
 class Converte_vetor_string:
+    """ Classe responsável por converter o nome por extenso da combinação de numeros do vetor tratado. 
+    """
     def __init__(self, vetor_dados):
+        """ Inicializador
+        Args:
+            vetor_dados (Vetor_dados): Objeto que tem extraido informações a respeito de uma lista tratada de valores numéricos.
+        """
         self.vetor_dados_objeto = vetor_dados
 
 
     def get_nome_extenso(self):
-        # funcao a ser usada 
+        """str: Cria o valor por extenso do vetor tratado que foi construido o objeto
+        returns:
+            Retorna o nome por extenso da combinação de numeros do vetor tratado.
+        """
         vetor = self._convert_vetor()
         if(self.vetor_dados_objeto.tes_case_especial_5):
             return "{0} e {1} e {2} e {3} e {4}".format(self._tratar_primeiro_mil(vetor[0]),vetor[1], vetor[2],vetor[3], vetor[4])
@@ -213,15 +285,36 @@ class Converte_vetor_string:
 
 
    
-# Classe numero
+
 class Numero():
+    """ Classe responsável por extrair parametros dos numeros do vetor tratado e converter o numero para a forma por extensa.
+
+    Note:
+        Essa classe tem a responsabilidade de extrair caracteristicas dos numeros da lista tratada.
+        Tem o mesmo problema comentado na classe Vetor_dados.O numero tem que estar dentro do range do dicionario que é usado na conversão. Isso pode ter gerado uma dependencia que gera erros silenciosos. 
+        A própia construção do vetor tratado segue esse dicionario.
+    
+    """
     
     def __init__(self, numero):
+        """ Método inicializador
+
+        Args:
+            numero (int): Um numero inteiro.
+        """
+
         self.numero = numero
         self._get_qualificador()
         self.conversor = Converte_numero(self)
         self._set_nome()
 
+    def get_nome(self):
+        """ Retorna o valor por extenso do numero
+
+        Returns:
+            str: Um numero inteiro.
+        """
+        return self.nome
 
 
     def _get_qualificador(self):
@@ -236,17 +329,23 @@ class Numero():
         self.teste_milhar_dezena = self.numero <= 100000 and not self.teste_e_milhar and not self.teste_milhar and not self.teste_centena and not self.teste_dezena and not self.teste_unidade #99000
 
 
-    #setar o nome do numero 
     def _set_nome(self):
         self.nome = self.conversor.get_nome_extenso()
     
-    def get_nome(self):
-        return self.nome
+    
 
 
 class Converte_numero:
-    # o numero tem que ser um objeto da classe Numero
+    """ Classe que é responsável por efetuar a conversão do numero inteiro para sua versão por extensa.
+    """
+
     def __init__(self,numero):
+        """ Método inicializador
+
+        Args:
+            numero (Numero): Um numero inteiro, que tem suas propiedades (e.g. esta no range da unidade?) extraidas.
+
+        """
         self.dicionario ={
             0:"zero",
             1:"um",
@@ -290,8 +389,13 @@ class Converte_numero:
         self.numero_objeto = numero
 
     
-    # usada para receber valores 
+    
     def get_nome_extenso(self):
+        """Class usada para retornar o valor por extenso do numero
+        Returns:
+            str: O valor por extenso do numero passado no construtor dessa classe.
+        
+        """
         return self._encontra_numero_nome(self.numero_objeto.numero)
 
     
