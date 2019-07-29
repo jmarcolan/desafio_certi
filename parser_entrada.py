@@ -1,23 +1,59 @@
+""" Módulo responsável por validar e tratar a entrada do sistema.
+
+Example:
+    Um exemplo de como usar a classe é:
+    literal blocks::
+        >>> teste = "-99999" # palavra de entrada
+        >>> recebe = Entrada_dados(teste)
+
+        >>> vetor_palavras = recebe.pega_vetor()
+        >>> # [90000, 9000, 900,90,9]
+
+Todo:
+    * Ver notas dentro das classes.
+
+"""
+
+
 import re
 
 
 class Entrada_dados:
-    # tem que arrumar esse metodo
-    # no estado que esta pode dar error por nao
-    # invocar o metodo pega_vetor antes.
+    """Classe responsável por lidar com a entrada de dados (e.g 119) e retornar o vetor numérico explodido [100, 10,9].
+
+    Note:
+        Tem que arrumar o método get_valida tanto seu nome quanto o fato dele gerar problemas casso não seja invocado o método pega_vetor antes.
+    """
+    
     def __init__(self, string_entrada):
+        """ Inicializador
+        Args:
+            string_entrada (string): Palavra que será convertida para o vetor numérico explodido .
+        """
         self.string_entrada = string_entrada
         # pega a entrada e valida,
         self.validador = Validando_entrada(self.string_entrada)
 
     def get_valida(self):
+        """str: Pega se a entrada é valida
+        returns:
+            Retorna verdadeiro caso a resposta seja valida
+        """
         return self.validador.get_test_valido()
         
        
     def get_sinal(self):
+        """Pega se o numero é negativo
+        returns:
+            Retorna verdadeiro caso o numero seja negativo
+        """
         return self.test_sinal_negativo
 
     def pega_vetor(self):
+        """Pega se o vetor explodido (eg. [100, 10, 9])
+        returns:
+            Retorna vetor explodido.
+        """
         if self.validador.get_test_valido():
             string = self.validador.get_string_valida()
             return self._get_entrada(string)
@@ -25,9 +61,12 @@ class Entrada_dados:
         else:
             # se nao for valida vai voltar a e strign q nao é valida
             return self.validador.get_string_valida()
+
     
-    # necessita refatorar tem 2 responsabilidade
     def _get_entrada(self,string):
+        """Esse método precisa ser refatorado. Ele tem duas responsabilidades.
+        Esse método é o que gera a maior parte dos problemas dessa classe.
+        """
         parser_entrada = Parser_entrada(string)
         self.test_sinal_negativo = parser_entrada.get_sinal()
         return parser_entrada.get_vetor_tratado()
@@ -38,16 +77,32 @@ class Entrada_dados:
 
 
 class Validando_entrada:
+    """Classe responsável por validar a palavra que entra.
+    """
     def __init__(self,string):
+        """ Inicializador
+        Args:
+            string_entrada (string): Palavra que será convertida para o vetor numérico explodido .
+        """
         self.string_entrada = string
         
        
     def get_test_valido(self):
+        """Encontra se a entrada é valida
+        returns:
+            Retorna verdadeiro caso a resposta seja valida
+        """
         return self._testa_numero_valido()
       
 
-    # tou setando que não é valido valor +++999
+    
     def get_string_valida(self):
+        """Pega a string valida
+        returns:
+            Retorna vetor explodido.
+        Notes:
+            Estou setando que não é valido valor +++999
+        """
         # se for um sinal positivo na frente
         if self._testa_sinal_positivo() :
             if self._testa_numero_valido() :
@@ -95,6 +150,12 @@ class Validando_entrada:
 
 
 class Parser_entrada:
+    """ Classe responsável por gerar o vetor explodido que é usado pela classe 
+    Arrumando_entrada
+
+    Note:
+        Talvez tenha que mesclar essa classe com a classe Arrumando_entrada. Não está claro a divisão de responsabilidades.
+    """
     def __init__(self, string):
         self.string_entrada = string
         self._sinal_negativo = self._detecta_sinal()
@@ -105,9 +166,17 @@ class Parser_entrada:
         self._vetor_tratado_saida = self._trata_vetor_desena()
 
     def get_vetor_tratado(self):
+        """Gera e retorna o vetor explodido (eg. [100, 10, 9])
+        returns:
+            Retorna o vetor explodido.
+        """
         return self._vetor_tratado_saida
 
     def get_sinal(self):
+        """Pega se o numero é negativo
+        returns:
+            Retorna verdadeiro caso o numero seja negativo
+        """
         return self._sinal_negativo
 
     def _detecta_zero(self):
